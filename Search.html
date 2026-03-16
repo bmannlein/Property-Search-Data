@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Search Extraordinaire</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSBtYXRjaGluZyBiYW5uZXIgY29sb3IgLS0+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iIzExMTgyNyIvPgoKICA8IS0tIENvbW1lcmNpYWwgYnVpbGRpbmcgKGJlaGluZCwgY2VudGVyLXJpZ2h0KSAtLT4KICA8cmVjdCB4PSIyNTUiIHk9IjE2NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8IS0tIEJ1aWxkaW5nIHdpbmRvd3MgLS0+CiAgPHJlY3QgeD0iMjc1IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBCdWlsZGluZyByb29mIHBhcmFwZXQgLS0+CiAgPHJlY3QgeD0iMjQ4IiB5PSIxNTIiIHdpZHRoPSIxNDQiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSJ3aGl0ZSIvPgoKICA8IS0tIEhvdXNlIChmb3JlZ3JvdW5kLCBsZWZ0LWNlbnRlcikgLS0+CiAgPCEtLSBIb3VzZSBib2R5IC0tPgogIDxyZWN0IHg9Ijk1IiB5PSIyNTUiIHdpZHRoPSIxODUiIGhlaWdodD0iMTMwIiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPCEtLSBSb29mIC0tPgogIDxwb2x5bGluZSBwb2ludHM9Ijc4LDI2MiAxODgsMTY1IDI5OCwyNjIiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRG9vciAtLT4KICA8cmVjdCB4PSIxNTkiIHk9IjMxOCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjY3IiByeD0iNCIgZmlsbD0id2hpdGUiLz4KICA8IS0tIFdpbmRvd3Mgb24gaG91c2UgLS0+CiAgPHJlY3QgeD0iMTA4IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjI5IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CgogIDwhLS0gTWFnbmlmeWluZyBnbGFzcyAtLT4KICA8IS0tIEdsYXNzIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9Ijc4IiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE4Ii8+CiAgPCEtLSBIYW5kbGUgLS0+CiAgPGxpbmUgeDE9IjM5OCIgeTE9IjM5OCIgeDI9IjQ1MCIgeTI9IjQ1MiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSAiaSIgaW5zaWRlIGdsYXNzIC0tPgogIDwhLS0gZG90IC0tPgogIDxjaXJjbGUgY3g9IjM0MCIgY3k9IjMwNSIgcj0iMTAiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBzdGVtIC0tPgogIDxyZWN0IHg9IjMzMCIgeT0iMzIzIiB3aWR0aD0iMjAiIGhlaWdodD0iNTIiIHJ4PSI2IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSBtYXRjaGluZyBiYW5uZXIgY29sb3IgLS0+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iIzExMTgyNyIvPgoKICA8IS0tIENvbW1lcmNpYWwgYnVpbGRpbmcgKGJlaGluZCwgY2VudGVyLXJpZ2h0KSAtLT4KICA8cmVjdCB4PSIyNTUiIHk9IjE2NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8IS0tIEJ1aWxkaW5nIHdpbmRvd3MgLS0+CiAgPHJlY3QgeD0iMjc1IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBCdWlsZGluZyByb29mIHBhcmFwZXQgLS0+CiAgPHJlY3QgeD0iMjQ4IiB5PSIxNTIiIHdpZHRoPSIxNDQiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSJ3aGl0ZSIvPgoKICA8IS0tIEhvdXNlIChmb3JlZ3JvdW5kLCBsZWZ0LWNlbnRlcikgLS0+CiAgPCEtLSBIb3VzZSBib2R5IC0tPgogIDxyZWN0IHg9Ijk1IiB5PSIyNTUiIHdpZHRoPSIxODUiIGhlaWdodD0iMTMwIiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPCEtLSBSb29mIC0tPgogIDxwb2x5bGluZSBwb2ludHM9Ijc4LDI2MiAxODgsMTY1IDI5OCwyNjIiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRG9vciAtLT4KICA8cmVjdCB4PSIxNTkiIHk9IjMxOCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjY3IiByeD0iNCIgZmlsbD0id2hpdGUiLz4KICA8IS0tIFdpbmRvd3Mgb24gaG91c2UgLS0+CiAgPHJlY3QgeD0iMTA4IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjI5IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CgogIDwhLS0gTWFnbmlmeWluZyBnbGFzcyAtLT4KICA8IS0tIEdsYXNzIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9Ijc4IiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE4Ii8+CiAgPCEtLSBIYW5kbGUgLS0+CiAgPGxpbmUgeDE9IjM5OCIgeTE9IjM5OCIgeDI9IjQ1MCIgeTI9IjQ1MiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSAiaSIgaW5zaWRlIGdsYXNzIC0tPgogIDwhLS0gZG90IC0tPgogIDxjaXJjbGUgY3g9IjM0MCIgY3k9IjMwNSIgcj0iMTAiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBzdGVtIC0tPgogIDxyZWN0IHg9IjMzMCIgeT0iMzIzIiB3aWR0aD0iMjAiIGhlaWdodD0iNTIiIHJ4PSI2IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #1a1f2e;
+    --paper:    #f4f1ea;
+    --white:    #fdfcf9;
+    --deep:     #111827;
+    --mid:      #2b5b8a;
+    --accent:   #c07a30;
+    --accent2:  #2e7d52;
+    --rule:     #d8d3c8;
+    --light-bg: #eceae2;
+    --shadow:   rgba(28,40,60,0.10);
+    --font:     'Calibri', 'Trebuchet MS', sans-serif;
+    --serif:    'Georgia', 'Times New Roman', serif;
+    --lar-mid:  #2b5b8a;
+    --lar-deep: #1c3557;
+    --weld-mid: #2e6b47;
+    --weld-deep:#1c3a2a;
+  }
+
+  body { font-family: var(--font); background: var(--paper); color: var(--ink); min-height: 100vh; font-size: 15px; }
+
+  /* HEADER */
+  .site-header { background: var(--deep); padding: 20px 40px 16px; border-bottom: 3px solid var(--accent); display: flex; align-items: flex-end; justify-content: space-between; }
+  .site-header h1 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; line-height: 1.1; }
+  .site-header .subtitle { font-size: 0.72rem; color: #7ea3c4; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+  .header-meta { text-align: right; font-size: 0.68rem; color: #5577aa; line-height: 2; }
+  .header-meta strong { color: #8bb8dd; }
+  .data-badges { display: flex; gap: 8px; justify-content: flex-end; margin-top: 5px; flex-wrap: wrap; }
+  .data-badge { font-size: 0.62rem; font-weight: 600; padding: 2px 9px; border-radius: 10px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.35); white-space: nowrap; transition: all 0.2s; }
+  .data-badge.loaded { background: rgba(46,125,82,0.3); border-color: rgba(46,125,82,0.6); color: #8dffc4; }
+
+  /* LOADERS */
+  .loader-section { border-bottom: 2px solid rgba(255,255,255,0.06); }
+  .loader-bar { padding: 9px 40px; display: flex; align-items: center; gap: 14px; font-size: 0.72rem; color: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .loader-bar.lar-bar  { background: #eef4fb; border-bottom: 1px solid #1a4a7a; }
+  .loader-bar.weld-bar { background: #eef6f1; border-bottom: 1px solid #1a5c35; }
+  .loader-county-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; min-width: 90px; }
+  .lar-bar  .loader-county-label { color: #1a4a7a; }
+  .weld-bar .loader-county-label { color: #1a5c35; }
+  .loader-progress-track { flex: 1; height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden; }
+  .lar-bar  .loader-progress-fill { height: 100%; background: #1a4a7a; border-radius: 4px; transition: width 0.3s ease; width: 0%; }
+  .weld-bar .loader-progress-fill { height: 100%; background: #1a5c35; border-radius: 4px; transition: width 0.3s ease; width: 0%; }
+  .loader-pct    { font-size: 0.65rem; font-weight: 700; min-width: 34px; text-align: right; }
+  .lar-bar  .loader-pct    { color: #1a4a7a; }
+  .weld-bar .loader-pct   { color: #1a5c35; }
+  .loader-status { font-size: 0.63rem; min-width: 120px; }
+  .lar-bar  .loader-status { color: rgba(26,74,122,0.65); }
+  .weld-bar .loader-status { color: rgba(26,92,53,0.65); }
+  .import-btns   { display: flex; gap: 7px; flex-shrink: 0; }
+  .import-btn    { font-family: var(--font); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.05em; padding: 4px 13px; border-radius: 3px; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.1s; white-space: nowrap; }
+  .import-btn:hover  { opacity: 0.85; transform: translateY(-1px); }
+  .import-btn:active { transform: translateY(0); }
+  .import-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+  .lar-bar  .import-btn-cloud { background: #2b5b8a; color: #d0e8ff; }
+  .lar-bar  .import-btn-local { background: #1c3557; color: #a0c8f0; border: 1px solid #3a6fa8; }
+  .weld-bar .import-btn-cloud { background: #2e6b47; color: #c0f0d8; }
+  .weld-bar .import-btn-local { background: #1c3a2a; color: #90d8b0; border: 1px solid #3a8a5a; }
+
+  /* MAIN */
+  .main { max-width: 1480px; margin: 0 auto; padding: 22px 40px 60px; }
+
+  /* SEARCH PANEL */
+  .search-panel { background: var(--white); border: 1px solid var(--rule); border-radius: 5px; box-shadow: 0 2px 10px var(--shadow); margin-bottom: 22px; overflow: hidden; }
+  .panel-header { background: var(--deep); padding: 10px 20px; }
+  .panel-title { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .panel-title strong { display: block; font-family: var(--serif); font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: 0; text-transform: none; margin-top: 1px; }
+  .search-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px 20px; padding: 20px 22px; }
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+  .field-group.span2 { grid-column: span 2; }
+  .field-group.span3 { grid-column: span 3; }
+  .row1-wrap { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 20px; }
+  .ms-wrapper { position: relative; }
+  .ms-btn { display: flex; align-items: center; justify-content: space-between; cursor: pointer; text-align: left; background: var(--paper); }
+  .ms-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+  .ms-arrow { width: 10px; height: 6px; flex-shrink: 0; margin-left: 6px; opacity: 0.5; }
+  .ms-panel { display: none; position: absolute; top: calc(100% + 3px); left: 0; right: 0; background: var(--white); border: 1.5px solid var(--mid); border-radius: 3px; z-index: 200; max-height: 220px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  .ms-panel.open { display: block; }
+  .ms-item { display: flex; align-items: center; gap: 7px; padding: 5px 10px; font-size: 0.8rem; cursor: pointer; color: var(--ink); white-space: nowrap; }
+  .ms-item:hover { background: #f0f5ff; }
+  .ms-item input[type=checkbox] { accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+  .field-label { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #888; font-weight: 600; }
+  .field-input { font-family: var(--font); font-size: 0.82rem; padding: 6px 10px; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink); border-radius: 3px; transition: border-color 0.1s; width: 100%; }
+  .field-input:focus { outline: none; border-color: var(--mid); background: var(--white); }
+  .field-input::placeholder { color: #bbb; }
+  select.field-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; cursor: pointer; }
+  .field-row { display: flex; gap: 6px; align-items: center; }
+  .field-row .field-input { flex: 1; }
+  .field-sep { font-size: 0.75rem; color: #aaa; flex-shrink: 0; }
+  .search-actions { padding: 14px 22px 18px; display: flex; gap: 10px; align-items: center; border-top: 1px solid var(--rule); }
+  .btn-search { font-family: var(--font); font-size: 0.82rem; font-weight: 700; padding: 9px 28px; background: var(--mid); color: #fff; border: none; border-radius: 3px; cursor: pointer; transition: background 0.15s; }
+  .btn-search:hover { background: #1c3557; }
+  .btn-search:disabled { background: #aaa; cursor: not-allowed; }
+  .btn-clear { font-family: var(--font); font-size: 0.78rem; padding: 9px 18px; background: transparent; color: #888; border: 1.5px solid var(--rule); border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+  .btn-clear:hover { border-color: #aaa; color: #555; }
+  .search-hint { font-size: 0.68rem; color: #aaa; margin-left: 6px; }
+
+  /* RESULTS */
+  .results-panel { background: var(--white); border: 1px solid var(--rule); border-radius: 5px; box-shadow: 0 2px 10px var(--shadow); overflow: hidden; }
+  .results-header { background: var(--deep); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; }
+  .results-title { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .results-title strong { display: block; font-family: var(--serif); font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: 0; text-transform: none; margin-top: 1px; }
+  .results-actions { display: flex; gap: 8px; align-items: center; }
+  .result-count { font-size: 0.68rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; white-space: nowrap; }
+  .result-count span { font-family: var(--serif); font-size: 1.1rem; color: #a8c8ff; font-weight: 700; }
+  .btn-export { font-family: var(--font); font-size: 0.72rem; font-weight: 600; padding: 5px 14px; background: var(--accent2); color: #fff; border: none; border-radius: 3px; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+  .btn-export:hover { background: #256844; }
+  .btn-export:disabled { background: #445; color: #667; cursor: not-allowed; }
+
+  .table-wrap { overflow-x: auto; max-height: 620px; overflow-y: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.74rem; }
+  thead th { background: #0e1a2e; color: rgba(255,255,255,0.6); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.6rem; padding: 9px 11px; text-align: left; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.07); position: sticky; top: 0; z-index: 2; cursor: pointer; user-select: none; }
+  thead th:hover { background: #152840; color: #fff; }
+  thead th .sort-arrow { margin-left: 4px; opacity: 0.4; }
+  thead th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+  tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.08s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr.row-lar  { border-left: 3px solid rgba(43,91,138,0.4); background: #eef4fb; }
+  tbody tr.row-weld { border-left: 3px solid rgba(46,107,71,0.4);  background: #eef6f1; }
+  tbody tr.row-lar:hover  { background: #ddeaf7; }
+  tbody tr.row-weld:hover { background: #d9eee2; }
+  td { padding: 7px 11px; color: #334; border-right: 1px solid var(--rule); white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis; text-align: left; }
+  td.addr { min-width: 160px; }
+  .empty-msg  { text-align: center; color: #bbb; padding: 40px 20px; font-size: 0.82rem; letter-spacing: 0.06em; }
+  .status-msg { text-align: center; color: #aaa; padding: 30px 20px; font-size: 0.78rem; }
+
+  /* PAGINATION */
+  .pagination { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; border-top: 1px solid var(--rule); font-size: 0.7rem; color: #888; }
+  .page-btns { display: flex; gap: 4px; }
+  .page-btn { font-family: var(--font); font-size: 0.68rem; padding: 4px 9px; border: 1.5px solid var(--rule); background: var(--paper); color: #666; border-radius: 3px; cursor: pointer; transition: all 0.1s; }
+  .page-btn:hover { border-color: var(--mid); color: var(--mid); }
+  .page-btn.active { background: var(--mid); color: #fff; border-color: var(--mid); }
+  .page-btn:disabled { color: #ccc; border-color: #eee; cursor: not-allowed; }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--light-bg); }
+  ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+
+  @media (max-width: 1100px) { .search-grid { grid-template-columns: repeat(4, 1fr); } .field-group.span3 { grid-column: span 2; } }
+  @media (max-width: 800px)  { .search-grid { grid-template-columns: repeat(2, 1fr); } .field-group.span2, .field-group.span3 { grid-column: span 2; } .main { padding: 16px 16px 40px; } .site-header { padding: 16px 16px 12px; } .loader-bar { padding: 7px 16px; } }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div>
+    <h1><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSBtYXRjaGluZyBiYW5uZXIgY29sb3IgLS0+CiAgPHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI4MCIgZmlsbD0iIzExMTgyNyIvPgoKICA8IS0tIENvbW1lcmNpYWwgYnVpbGRpbmcgKGJlaGluZCwgY2VudGVyLXJpZ2h0KSAtLT4KICA8cmVjdCB4PSIyNTUiIHk9IjE2NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8IS0tIEJ1aWxkaW5nIHdpbmRvd3MgLS0+CiAgPHJlY3QgeD0iMjc1IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIxOTAiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyMzIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjc1IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzE0IiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMzUzIiB5PSIyNzQiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgcng9IjIiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBCdWlsZGluZyByb29mIHBhcmFwZXQgLS0+CiAgPHJlY3QgeD0iMjQ4IiB5PSIxNTIiIHdpZHRoPSIxNDQiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSJ3aGl0ZSIvPgoKICA8IS0tIEhvdXNlIChmb3JlZ3JvdW5kLCBsZWZ0LWNlbnRlcikgLS0+CiAgPCEtLSBIb3VzZSBib2R5IC0tPgogIDxyZWN0IHg9Ijk1IiB5PSIyNTUiIHdpZHRoPSIxODUiIGhlaWdodD0iMTMwIiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPCEtLSBSb29mIC0tPgogIDxwb2x5bGluZSBwb2ludHM9Ijc4LDI2MiAxODgsMTY1IDI5OCwyNjIiIGZpbGw9IiMxMTE4MjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gRG9vciAtLT4KICA8cmVjdCB4PSIxNTkiIHk9IjMxOCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjY3IiByeD0iNCIgZmlsbD0id2hpdGUiLz4KICA8IS0tIFdpbmRvd3Mgb24gaG91c2UgLS0+CiAgPHJlY3QgeD0iMTA4IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3QgeD0iMjI5IiB5PSIyNzgiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNCIgcng9IjMiIGZpbGw9IndoaXRlIi8+CgogIDwhLS0gTWFnbmlmeWluZyBnbGFzcyAtLT4KICA8IS0tIEdsYXNzIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9Ijc4IiBmaWxsPSIjMTExODI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE4Ii8+CiAgPCEtLSBIYW5kbGUgLS0+CiAgPGxpbmUgeDE9IjM5OCIgeTE9IjM5OCIgeDI9IjQ1MCIgeTI9IjQ1MiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSAiaSIgaW5zaWRlIGdsYXNzIC0tPgogIDwhLS0gZG90IC0tPgogIDxjaXJjbGUgY3g9IjM0MCIgY3k9IjMwNSIgcj0iMTAiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBzdGVtIC0tPgogIDxyZWN0IHg9IjMzMCIgeT0iMzIzIiB3aWR0aD0iMjAiIGhlaWdodD0iNTIiIHJ4PSI2IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" alt="" style="height:1.5em;width:1.5em;vertical-align:middle;margin-right:12px;border-radius:8px;">Property Search Extraordinaire</h1>
+    <div class="subtitle">Larimer &amp; Weld County Assessor Records · Unified Search</div>
+  </div>
+  <div class="header-meta">
+    <div>Sources: <strong>larimer.gov</strong> &amp; <strong>weld.gov</strong></div>
+    <div class="data-badges">
+      <span class="data-badge" id="badge-lar"><img src="https://www.larimer.gov/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px"> Larimer: No Data</span>
+      <span class="data-badge" id="badge-weld"><img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px"> Weld: No Data</span>
+    </div>
+  </div>
+</header>
+
+<!-- LOADER SECTION -->
+<div class="loader-section">
+
+  <!-- Larimer -->
+  <div class="loader-bar lar-bar">
+    <span class="loader-county-label"><img src="https://www.larimer.gov/favicon.ico" width="14" height="14" style="vertical-align:middle;margin-right:4px"> Larimer</span>
+    <div class="import-btns" id="lar-import-btns">
+    </div>
+    <div class="loader-progress-track" id="lar-progress-wrap" style="display:none">
+      <div class="loader-progress-fill" id="lar-progress-bar" style="width:0%"></div>
+    </div>
+    <span class="loader-pct" id="lar-pct" style="display:none">0%</span>
+    <span class="loader-status" id="lar-status">Waiting…</span>
+  </div>
+
+  <!-- Weld -->
+  <div class="loader-bar weld-bar">
+    <span class="loader-county-label"><img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="14" height="14" style="vertical-align:middle;margin-right:4px"> Weld</span>
+    <div class="import-btns" id="weld-import-btns">
+    </div>
+    <div class="loader-progress-track" id="weld-progress-wrap" style="display:none">
+      <div class="loader-progress-fill" id="weld-progress-bar" style="width:0%"></div>
+    </div>
+    <span class="loader-pct" id="weld-pct" style="display:none">0%</span>
+    <span class="loader-status" id="weld-status">Waiting…</span>
+  </div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SEARCH FORM -->
+  <div class="search-panel">
+    <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="panel-title">Search Criteria<strong>Larimer &amp; Weld County Assessor Records</strong></div>
+      <div>
+        <button id="btn-local-all" style="background:#4a4a6a;color:#d0d0f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;"
+          onclick="document.getElementById('all-file-input').click()" title="Select local CSV files for both counties">
+          📁 Load Local Files
+        </button>
+        <input type="file" id="all-file-input" multiple accept=".csv" style="display:none" onchange="startLocalLoadAll(this.files)">
+      </div>
+    </div>
+    <div class="search-grid">
+
+      <!-- Row 1: 4-wide full-row wrapper -->
+      <div class="row1-wrap">
+        <div class="field-group">
+          <label class="field-label">Owner Name (partial match)</label>
+          <input class="field-input" id="f-owner" placeholder="e.g. Smith or LLC" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Property Type</label>
+          <select class="field-input" id="f-proptype">
+            <option value="">— All Types —</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Built As</label>
+          <div class="ms-wrapper" id="ms-bltasdesc">
+            <button type="button" class="ms-btn field-input" onclick="toggleMs('ms-bltasdesc')">
+              <span>— All —</span><svg class="ms-arrow" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+            </button>
+            <div class="ms-panel" id="ms-bltasdesc-panel"></div>
+          </div>
+          <select id="f-bltasdesc" multiple style="display:none"></select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Occupancy Type</label>
+          <div class="ms-wrapper" id="ms-occtype">
+            <button type="button" class="ms-btn field-input" onclick="toggleMs('ms-occtype')">
+              <span>— All —</span><svg class="ms-arrow" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+            </button>
+            <div class="ms-panel" id="ms-occtype-panel"></div>
+          </div>
+          <select id="f-occtype" multiple style="display:none"></select>
+        </div>
+      </div>
+
+      <!-- Row 2: Street Number Range, Street Name, Property City -->
+      <div class="field-group span2">
+        <label class="field-label">Street Number Range</label>
+        <div class="field-row">
+          <input class="field-input" id="f-streetno-low"  placeholder="Low"  type="number" min="0">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-streetno-high" placeholder="High" type="number" min="0">
+        </div>
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">Street Name</label>
+        <input class="field-input" id="f-streetname" placeholder="e.g. Oak" autocomplete="off">
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">Property City</label>
+        <input class="field-input" id="f-city" placeholder="e.g. Fort Collins" autocomplete="off">
+      </div>
+
+      <!-- Row 3: SF Range, Land Area Range, Units Range -->
+      <div class="field-group span2">
+        <label class="field-label">Improvement Sq Ft</label>
+        <div class="field-row">
+          <input class="field-input" id="f-sf-min" placeholder="Min" type="number" min="0">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-sf-max" placeholder="Max" type="number" min="0">
+        </div>
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">Land Area (acres)</label>
+        <div class="field-row">
+          <input class="field-input" id="f-acres-min" placeholder="Min" type="number" min="0" step="0.001">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-acres-max" placeholder="Max" type="number" min="0" step="0.001">
+        </div>
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">Units</label>
+        <div class="field-row">
+          <input class="field-input" id="f-units-min" placeholder="Min" type="number" min="0">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-units-max" placeholder="Max" type="number" min="0">
+        </div>
+      </div>
+
+      <!-- Row 4: Sale Price Range, Sale Date Range, County -->
+      <div class="field-group span2">
+        <label class="field-label">Sale Price</label>
+        <div class="field-row">
+          <input class="field-input" id="f-price-min" placeholder="Min $" type="number" min="0">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-price-max" placeholder="Max $" type="number" min="0">
+        </div>
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">Sale Date Range</label>
+        <div class="field-row">
+          <input class="field-input" id="f-date-min" type="date">
+          <span class="field-sep">–</span>
+          <input class="field-input" id="f-date-max" type="date">
+        </div>
+      </div>
+      <div class="field-group span2">
+        <label class="field-label">County</label>
+        <select class="field-input" id="f-county">
+          <option value="">— All Counties —</option>
+          <option value="LARIMER">Larimer</option>
+          <option value="WELD">Weld</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="search-actions">
+      <button class="btn-search" id="btn-search" onclick="runSearch()" disabled>Search</button>
+      <button class="btn-clear" onclick="clearSearch()">Clear</button>
+      <span class="search-hint">All fields optional · text fields use partial matching</span>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-panel">
+    <div class="results-header">
+      <div class="results-title">Results<strong>Matching Properties</strong></div>
+      <div class="results-actions">
+        <div class="result-count"><span id="result-count">—</span> records</div>
+        <button class="btn-export" id="btn-export" onclick="exportCSV()" disabled>⬇ Export CSV</button>
+      </div>
+    </div>
+    <div class="table-wrap" id="table-wrap">
+      <div class="status-msg" id="status-msg">Select a data source for each county above to begin.</div>
+    </div>
+    <div class="pagination" id="pagination" style="display:none">
+      <div id="page-info"></div>
+      <div class="page-btns" id="page-btns"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// CONSTANTS & STATE
+// ─────────────────────────────────────────────────────────────────────────────
+const PAGE_SIZE = 200;
+
+const larDB  = {
+  account: null, improvement: null, impdetail: null, landattr: null,
+  owner: null, ownerlocation: null, sales: null, valuedetail: null,
+};
+const weldDB = { ownership: null, acct: null, imps: null, sales: null };
+
+let allResults  = [];
+let sortCol     = null;
+let sortDir     = 1;
+let currentPage = 1;
+
+// ── Search cache — built once after data loads, reused on every search ────────
+let searchCache = null;
+
+function buildSearchCache() {
+  searchCache = null;  // clear while rebuilding
+  const c = {};
+
+  // ── LARIMER ────────────────────────────────────────────────────────────────
+  if (larDB.improvement) {
+    const larImpnoCol = (() => {
+      const first = larDB.improvement[0];
+      if (!first) return null;
+      return Object.keys(first).find(k => k.trim().toUpperCase() === 'IMPNO') || null;
+    })();
+
+    // impMap: ACCOUNTNO → largest-SF row; bldgsByAccLar: ACCOUNTNO → [{pt,blt,occ}]
+    c.larImpMap      = new Map();
+    c.bldgsByAccLar  = new Map();  // grouped for O(1) per-account lookup
+    c.apartAcctsLar  = new Set();
+
+    for (let i = 0; i < larDB.improvement.length; i++) {
+      const row = larDB.improvement[i];
+      const acc = row.ACCOUNTNO;
+      const sf  = parseFloat(row.SF) || 0;
+      if (!c.larImpMap.has(acc) || sf > (parseFloat(c.larImpMap.get(acc).SF) || 0))
+        c.larImpMap.set(acc, row);
+      if ((row.BLTASDESCRIPTION || '').toLowerCase().includes('apartment'))
+        c.apartAcctsLar.add(acc);
+      const b = {
+        pt:  (row.PROPERTYTYPE     || '').trim().toUpperCase(),
+        blt: (row.BLTASDESCRIPTION || '').trim(),
+        occ: (row.OCCDESCRIPTION   || '').trim(),
+      };
+      if (!c.bldgsByAccLar.has(acc)) c.bldgsByAccLar.set(acc, []);
+      c.bldgsByAccLar.get(acc).push(b);
+    }
+
+    // unitMap: ACCOUNTNO → summed LANDUNITCOUNT (apartment accounts only)
+    c.larUnitMap = new Map();
+    if (larDB.valuedetail) {
+      for (const row of larDB.valuedetail) {
+        if (!c.apartAcctsLar.has(row.ACCOUNTNO)) continue;
+        if ((row.VALUETYPE || '').trim().toLowerCase() !== 'improvement') continue;
+        const cnt = parseFloat(row.LANDUNITCOUNT) || 0;
+        if (cnt > 0) c.larUnitMap.set(row.ACCOUNTNO, (c.larUnitMap.get(row.ACCOUNTNO) || 0) + cnt);
+      }
+    }
+
+    // ownerMap, ownerLocMap
+    c.larOwnerMap = new Map();
+    if (larDB.owner) {
+      for (const row of larDB.owner)
+        if (!c.larOwnerMap.has(row.ACCOUNTNO)) c.larOwnerMap.set(row.ACCOUNTNO, row);
+    }
+    c.larOwnerLocMap = new Map();
+    if (larDB.ownerlocation) {
+      for (const row of larDB.ownerlocation)
+        if (!c.larOwnerLocMap.has(row.ACCOUNTNO)) c.larOwnerLocMap.set(row.ACCOUNTNO, row);
+    }
+
+    // salesMap: ACCOUNTNO → most recent non-zero sale
+    c.larSalesMap = new Map();
+    if (larDB.sales) {
+      for (const row of larDB.sales) {
+        const price = parseFloat(row.SALEPRICE) || 0; if (!price) continue;
+        const acc = row.ACCOUNTNO;
+        const d   = (row.SALEDATE || '').toString().substring(0, 10);
+        const ex  = c.larSalesMap.get(acc);
+        if (!ex || d > (ex._date || '')) c.larSalesMap.set(acc, { ...row, _date: d });
+      }
+    }
+  }
+
+  // ── WELD ───────────────────────────────────────────────────────────────────
+  if (weldDB.imps) {
+    const weldBldgCol = (() => {
+      const first = weldDB.imps[0];
+      if (!first) return null;
+      return Object.keys(first).find(k => k.trim().toUpperCase() === 'BLDGID') || null;
+    })();
+    c.weldBldgCol = weldBldgCol;
+
+    // acctMap: ACCOUNTNO → first acct row
+    c.weldAcctMap = new Map();
+    for (const row of (weldDB.acct || []))
+      if (!c.weldAcctMap.has(row.ACCOUNTNO)) c.weldAcctMap.set(row.ACCOUNTNO, row);
+
+    // impsMap, impsYrMap, impsUnitsMap, bldgsByAccWeld
+    c.weldImpsMap      = new Map();
+    c.weldImpsYrMap    = new Map();
+    c.weldImpsUnitsMap = new Map();
+    c.bldgsByAccWeld   = new Map();  // grouped for O(1) per-account lookup
+
+    for (let i = 0; i < weldDB.imps.length; i++) {
+      const row = weldDB.imps[i];
+      const acc = (row.ACCOUNTNO || '').trim();
+      const sf  = parseFloat(row.SF) || 0;
+      if (!c.weldImpsMap.has(acc) || sf > (parseFloat(c.weldImpsMap.get(acc).SF) || 0))
+        c.weldImpsMap.set(acc, row);
+      const yr = parseInt((row.YRBLT || '').toString().trim()) || 0;
+      if (yr > 0) {
+        if (!c.weldImpsYrMap.has(acc)) c.weldImpsYrMap.set(acc, new Set());
+        c.weldImpsYrMap.get(acc).add(yr);
+      }
+      if ((row.OCCUPANCY || '').toLowerCase().includes('apartment')) {
+        const u = parseFloat((row.UNITS || '').toString().trim()) || 0;
+        if (u > 0) c.weldImpsUnitsMap.set(acc, (c.weldImpsUnitsMap.get(acc) || 0) + u);
+      }
+      const b = {
+        rawId: weldBldgCol ? (row[weldBldgCol] || String(i)) : String(i),
+        pt:    (row.PROPTYPE  || '').trim().toUpperCase(),
+        blt:   (row.BLTASDESC || '').trim(),
+        occ:   (row.OCCUPANCY || '').trim(),
+      };
+      if (!c.bldgsByAccWeld.has(acc)) c.bldgsByAccWeld.set(acc, []);
+      c.bldgsByAccWeld.get(acc).push(b);
+    }
+
+    // salesMap: ACCOUNTNO → most recent non-zero sale
+    c.weldSalesMap = new Map();
+    for (const row of (weldDB.sales || [])) {
+      const price = parseFloat((row.SALEP || '').toString().trim()) || 0; if (!price) continue;
+      const acc = row.ACCOUNTNO;
+      const d   = (row.DOCDT || '').toString().trim();
+      const ex  = c.weldSalesMap.get(acc);
+      if (!ex || d > (ex._date || '')) c.weldSalesMap.set(acc, { ...row, _date: d });
+    }
+  }
+
+  searchCache = c;
+  console.log('[Cache] built — larImpMap:', c.larImpMap?.size, ' weldImpsMap:', c.weldImpsMap?.size);
+}
+
+const COLUMNS = [
+  { key: 'PROPERTY_ADDRESS', label: 'Property Address', cls: 'addr' },
+  { key: 'PROP_CITY',        label: 'Property City',   cls: '' },
+  { key: 'DOC',              label: 'Built',           cls: '' },
+  { key: 'LAST_SALEPRICE',   label: 'Last Sale',       cls: '' },
+  { key: 'LAST_SALEDATE',    label: 'Sale Date',       cls: '' },
+  { key: 'UNITS',            label: 'Units',           cls: '' },
+  { key: 'SF',               label: 'Sq Ft',           cls: '' },
+  { key: 'ACRES',            label: 'Acres',           cls: '' },
+  { key: 'OWNERNAME',        label: 'Owner Name',      cls: '' },
+  { key: 'OWNER_ADDR',       label: 'Owner Address',   cls: '' },
+  { key: 'OWNER_CITY',       label: 'Owner City',      cls: '' },
+  { key: 'OWNER_STATE',      label: 'State',           cls: '' },
+  { key: 'OWNER_ZIP',        label: 'Owner Zip',       cls: '' },
+  { key: 'PROPTYPE',         label: 'Property Type',   cls: '' },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHARED UTILITIES
+// ─────────────────────────────────────────────────────────────────────────────
+function readFileAsText(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload  = e => res(e.target.result);
+    r.onerror = () => rej(new Error('FileReader error'));
+    r.readAsText(file);
+  });
+}
+
+function fmtPrice(v) { const n = parseFloat(v); return n > 0 ? '$' + n.toLocaleString() : '—'; }
+function fmtDate(v)  {
+  if (!v) return '—';
+  const d = new Date(v);
+  if (isNaN(d)) return v;
+  return (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '/' + d.getUTCFullYear();
+}
+function fmtZip(v) {
+  const z = String(v || '').trim().replace(/\D/g, '');
+  return z.length > 5 ? z.slice(0, 5) + '-' + z.slice(5) : (z || '—');
+}
+function csvEsc(v) {
+  const s = String(v ?? '');
+  return (s.includes(',') || s.includes('"') || s.includes('\n')) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function pageRange(cur, total) {
+  if (total <= 9) return Array.from({ length: total }, (_, i) => i + 1);
+  const r = []; r.push(1);
+  if (cur > 3) r.push('…');
+  for (let p = Math.max(2, cur - 1); p <= Math.min(total - 1, cur + 1); p++) r.push(p);
+  if (cur < total - 2) r.push('…');
+  r.push(total);
+  return r;
+}
+function gval(id)  { return document.getElementById(id).value.trim(); }
+function gvalN(id) { const v = gval(id); return v === '' ? null : parseFloat(v); }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SLOT / BADGE UI
+// ─────────────────────────────────────────────────────────────────────────────
+
+function setProgress(prefix, done, total) {
+  const pct   = total > 0 ? Math.round(done / total * 100) : 0;
+  const bar   = document.getElementById(prefix + '-progress-bar');
+  const pctEl = document.getElementById(prefix + '-pct');
+  const wrap  = document.getElementById(prefix + '-progress-wrap');
+  if (wrap)  { wrap.style.display  = 'block'; wrap.style.flex = '1'; }
+  if (pctEl) { pctEl.style.display = 'inline'; pctEl.textContent = pct + '%'; }
+  if (bar)   bar.style.width = pct + '%';
+}
+
+function showImportBtns(prefix, show) {
+  const el = document.getElementById(prefix + '-import-btns');
+  if (el) el.style.display = show ? 'flex' : 'none';
+}
+
+function disableImportBtns(prefix) {
+  const btns = document.querySelectorAll(`#${prefix}-import-btns .import-btn`);
+  btns.forEach(b => b.disabled = true);
+}
+
+function setStatus(prefix, msg) {
+  const el = document.getElementById(prefix + '-status');
+  if (el) el.textContent = msg;
+}
+
+async function startCloudLoadAll() {
+  const statusEl = document.getElementById('status-msg');
+  statusEl.innerHTML = '⏳ <strong>Loading all data from GitHub…</strong>';
+
+  await Promise.all([
+    larLoadFiles(key => fetchRemoteCSV(LAR_REMOTE[key])),
+    weldLoadFiles(key => fetchRemoteCSV(WELD_REMOTE[key])),
+  ]);
+
+  const larCore  = larDB.account !== null && larDB.improvement !== null && larDB.sales !== null;
+  const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
+
+  if (larCore && weldCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Larimer &amp; Weld loaded from GitHub and cached for next visit.';
+  } else if (larCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Larimer loaded. ⚠️ Weld failed — check repo <strong>bmannlein/Property-Search-Data</strong>.';
+  } else if (weldCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Weld loaded. ⚠️ Larimer failed — check repo <strong>bmannlein/Property-Search-Data</strong>.';
+  } else {
+    statusEl.innerHTML = '❌ Cloud load failed — check that <strong>bmannlein/Property-Search-Data</strong> is public and filenames match. Use 📁 Load Local Files to load manually.';
+  }
+}
+
+async function startLocalLoadAll(files) {
+  if (!files || files.length === 0) return;
+  const fileList = Array.from(files);
+  const statusEl = document.getElementById('status-msg');
+  statusEl.innerHTML = '⏳ <strong>Loading all local files…</strong>';
+
+  // Disable the combined local button
+  const btn = document.querySelector('#all-file-input').previousElementSibling;
+  if (btn) btn.disabled = true;
+
+  const LAR_NAME_MAP = {
+    account:       'assessor-public-account.csv',
+    improvement:   'assessor-public-improvement.csv',
+    impdetail:     'assessor-public-improvement-detail.csv',
+    landattr:      'assessor-public-land-attributes.csv',
+    owner:         'assessor-public-owner.csv',
+    ownerlocation: 'assessor-public-owner-location.csv',
+    sales:         'assessor-public-sales.csv',
+    valuedetail:   'assessor-public-value-detail.csv',
+  };
+
+  // Load both counties in parallel
+  await Promise.all([
+    larLoadFiles(async key => {
+      const pattern = LAR_NAME_MAP[key].toLowerCase();
+      const file = fileList.find(f => f.name.toLowerCase() === pattern);
+      if (!file) { console.warn(`[Larimer local] no match for: ${pattern}`); return null; }
+      const text = await readFileAsText(file);
+      return Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => h.trim() }).data;
+    }),
+    weldLoadFiles(async key => {
+      const pattern = WELD_PATTERNS[key];
+      const file = fileList.find(f => f.name.toLowerCase().includes(pattern));
+      if (!file) { console.warn(`[Weld local] no match for: ${pattern}`); return null; }
+      const text = await readFileAsText(file);
+      return weldParse(text);
+    }),
+  ]);
+
+  const larCore  = larDB.account !== null && larDB.improvement !== null && larDB.sales !== null;
+  const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
+
+  if (larCore && weldCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Larimer &amp; Weld loaded from local files and cached for next visit.';
+  } else if (larCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Larimer loaded. ⚠️ Weld files not found — check filenames.';
+  } else if (weldCore) {
+    await saveToIDB();
+    statusEl.innerHTML = '✅ Weld loaded. ⚠️ Larimer files not found — check filenames.';
+  } else {
+    statusEl.innerHTML = '⚠️ No files matched. Ensure CSV filenames are unchanged from the assessor source.';
+  }
+}
+
+function updateUI() {
+  // Larimer: searchable once the 3 core tables are loaded
+  const larCore = larDB.account !== null && larDB.improvement !== null && larDB.sales !== null;
+  // Weld: searchable once ownership + acct + imps are loaded (sales enriches but isn't required)
+  const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
+
+  const LAR_ICO  = '<img src="https://www.larimer.gov/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px">';
+  const WELD_ICO = '<img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px">';
+  const bl = document.getElementById('badge-lar');
+  const bw = document.getElementById('badge-weld');
+  if (larCore) {
+    const loadedCount = Object.values(larDB).filter(v => v !== null).length;
+    bl.innerHTML = `${LAR_ICO}Larimer: ${larDB.account.length.toLocaleString()} accts (${loadedCount}/8 files)`;
+    bl.classList.add('loaded');
+    setStatus('lar', `✓ ${larDB.account.length.toLocaleString()} accounts loaded`);
+  } else {
+    const loadedCount = Object.values(larDB).filter(v => v !== null).length;
+    bl.innerHTML = loadedCount > 0 ? `${LAR_ICO}Larimer: Loading… (${loadedCount}/8)` : `${LAR_ICO}Larimer: No Data`;
+    bl.classList.remove('loaded');
+  }
+  if (weldCore) {
+    const loadedCount = Object.values(weldDB).filter(v => v !== null).length;
+    bw.innerHTML = `${WELD_ICO}Weld: ${weldDB.ownership.length.toLocaleString()} accts (${loadedCount}/4 files)`;
+    bw.classList.add('loaded');
+    setStatus('weld', `✓ ${weldDB.ownership.length.toLocaleString()} accounts loaded`);
+  } else {
+    const loadedCount = Object.values(weldDB).filter(v => v !== null).length;
+    bw.innerHTML = loadedCount > 0 ? `${WELD_ICO}Weld: Loading… (${loadedCount}/4)` : `${WELD_ICO}Weld: No Data`;
+    bw.classList.remove('loaded');
+  }
+
+  document.getElementById('btn-search').disabled = !(larCore || weldCore);
+  if (larCore || weldCore) {
+    buildSearchCache();
+    populatePropTypeDropdown();
+  }
+}
+
+// ── Cascading dropdown maps ───────────────────────────────────────────────────
+// ptToBlt  : PT  → Set<blt>          (Property Type → Built As values)
+// ptBltToOcc: PT + '§' + blt → Set<occ>  (Property Type + Built As → Occ values)
+// allBlt   : Set<blt>   — full universe across both counties
+// allOcc   : Set<occ>   — full universe across both counties
+let ptToBlt    = new Map();
+let ptBltToOcc = new Map();
+let allBlt     = new Set();
+let allOcc     = new Set();
+
+function buildCascadeMaps() {
+  ptToBlt    = new Map();
+  ptBltToOcc = new Map();
+  allBlt     = new Set();
+  allOcc     = new Set();
+
+  // acctBuildings: ACCOUNTNO → Array<{pt, blt, occ}> — one entry per improvement row
+  const acctBuildings = new Map();
+
+  function addBuilding(acct, pt, blt, occ) {
+    if (!acct) return;
+    if (!acctBuildings.has(acct)) acctBuildings.set(acct, []);
+    acctBuildings.get(acct).push({ pt, blt, occ });
+    if (blt) allBlt.add(blt);
+    if (occ) allOcc.add(occ);
+  }
+
+  // Larimer — assessor-public-improvement.csv
+  // PROPERTYTYPE confirmed column F; IMPNO is the building id
+  if (larDB.improvement) {
+    for (let i = 0; i < larDB.improvement.length; i++) {
+      const r = larDB.improvement[i];
+      addBuilding(
+        (r.ACCOUNTNO        || '').trim(),
+        (r.PROPERTYTYPE     || '').trim().toUpperCase(),
+        (r.BLTASDESCRIPTION || '').trim(),
+        (r.OCCDESCRIPTION   || '').trim()
+      );
+    }
+  }
+
+  // Weld — ImpsCurrentInvntry.csv has PROPTYPE, BLDGID, BLTASDESC, OCCUPANCY per building row
+  if (weldDB.imps) {
+    for (let i = 0; i < weldDB.imps.length; i++) {
+      const r = weldDB.imps[i];
+      addBuilding(
+        (r.ACCOUNTNO  || '').trim(),
+        (r.PROPTYPE   || '').trim().toUpperCase(),
+        (r.BLTASDESC  || '').trim(),
+        (r.OCCUPANCY  || '').trim()
+      );
+    }
+  }
+
+  // Build ptToBlt and ptBltToOcc.
+  // Each row is already scoped to a specific building via IMPNO/BLDGID.
+  // Directly register every PT→BLT pair and every PT§BLT→OCC triple found.
+  // No first-match-per-account rule — every building row contributes its own values.
+  for (const [, bldgs] of acctBuildings) {
+    for (const b of bldgs) {
+      if (!b.pt || !b.blt) continue;  // need both PT and BLT on this row
+      // Register blt under pt
+      if (!ptToBlt.has(b.pt)) ptToBlt.set(b.pt, new Set());
+      ptToBlt.get(b.pt).add(b.blt);
+      // Register occ under pt§blt — same row, no cross-contamination
+      if (b.occ) {
+        const k = b.pt + '§' + b.blt;
+        if (!ptBltToOcc.has(k)) ptBltToOcc.set(k, new Set());
+        ptBltToOcc.get(k).add(b.occ);
+      }
+    }
+  }
+
+  // Diagnostic log — check browser console after loading data
+  console.log(`[Cascade] accounts: ${acctBuildings.size}  ptToBlt keys: ${ptToBlt.size}  allBlt: ${allBlt.size}  allOcc: ${allOcc.size}`);
+  for (const pt of [...ptToBlt.keys()].slice(0, 8)) {
+    console.log(`  [Cascade] "${pt}" → Built As:`, [...ptToBlt.get(pt)]);
+  }
+}
+
+function populatePropTypeDropdown() {
+  try { buildCascadeMaps(); } catch(e) { console.error('[buildCascadeMaps ERROR]', e); }
+
+  const types = new Set();
+
+  // Larimer: PROPERTYTYPE confirmed column F in assessor-public-improvement.csv
+  if (larDB.improvement && larDB.improvement.length > 0) {
+    for (const r of larDB.improvement) {
+      const t = (r.PROPERTYTYPE || '').trim().toUpperCase();
+      if (t) types.add(t);
+    }
+    console.log('[PT] Larimer types found:', types.size, [...types].slice(0, 5));
+  }
+
+  // Weld: PROPTYPE is on each row in ImpsCurrentInvntry.csv
+  if (weldDB.imps && weldDB.imps.length > 0) {
+    for (const r of weldDB.imps) {
+      const t = (r.PROPTYPE || '').trim().toUpperCase();
+      if (t) types.add(t);
+    }
+  }
+  const sel = document.getElementById('f-proptype');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— All Types —</option>';
+  for (const t of [...types].sort()) { const o = document.createElement('option'); o.value = t; o.textContent = t; sel.appendChild(o); }
+  if (cur) sel.value = cur;
+
+  refreshBltasDropdown();
+  refreshOccDropdown();
+
+  // Wire change listeners once
+  if (!sel.dataset.listenerAdded) {
+    sel.dataset.listenerAdded = '1';
+    sel.addEventListener('change', () => {
+      // When property type changes, clear both downstream selectors then repopulate
+      clearMsWrapper('ms-bltasdesc', 'f-bltasdesc');
+      clearMsWrapper('ms-occtype',   'f-occtype');
+      refreshBltasDropdown();
+      refreshOccDropdown();
+    });
+  }
+}
+
+function clearMsWrapper(wrapperId, hiddenId) {
+  const wrapper = document.getElementById(wrapperId);
+  if (!wrapper) return;
+  wrapper.querySelectorAll('.ms-panel input[type=checkbox]').forEach(cb => cb.checked = false);
+  updateMsBtn(wrapperId, hiddenId);
+}
+
+// ── Custom multi-select widget helpers ────────────────────────────────────────
+function rebuildMultiSelect(wrapperId, hiddenId, items, prevSelected) {
+  const wrapper = document.getElementById(wrapperId);
+  if (!wrapper) return;
+  const panel = wrapper.querySelector('.ms-panel');
+  panel.innerHTML = '';
+  for (const item of [...items].sort()) {
+    const label = document.createElement('label');
+    label.className = 'ms-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.value = item;
+    if (prevSelected.has(item)) cb.checked = true;
+    cb.addEventListener('change', () => {
+      updateMsBtn(wrapperId, hiddenId);
+      if (wrapperId === 'ms-bltasdesc') {
+        // When Built As changes, clear Occupancy and repopulate from the new blt set
+        clearMsWrapper('ms-occtype', 'f-occtype');
+        refreshOccDropdown();
+      }
+    });
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(' ' + item));
+    panel.appendChild(label);
+  }
+  updateMsBtn(wrapperId, hiddenId);
+}
+
+function updateMsBtn(wrapperId, hiddenId) {
+  const wrapper = document.getElementById(wrapperId);
+  const btn     = wrapper.querySelector('.ms-btn span');
+  const vals    = [...wrapper.querySelectorAll('.ms-panel input:checked')].map(c => c.value);
+  btn.textContent = vals.length === 0 ? '— All —'
+                  : vals.length === 1 ? vals[0]
+                  : `${vals.length} selected`;
+  const sel = document.getElementById(hiddenId);
+  for (const o of sel.options) o.selected = vals.includes(o.value);
+}
+
+function getMultiSelectValuesByWrapper(wrapperId) {
+  const wrapper = document.getElementById(wrapperId);
+  if (!wrapper) return new Set();
+  return new Set([...wrapper.querySelectorAll('.ms-panel input:checked')].map(c => c.value));
+}
+
+function refreshBltasDropdown() {
+  const pt   = gval('f-proptype').toUpperCase();
+  const prev = getMultiSelectValuesByWrapper('ms-bltasdesc');
+
+  // Built As = all blt values on rows where pt matches the selected Property Type.
+  // If no pt selected, show the full universe.
+  const items = (pt && ptToBlt.has(pt)) ? ptToBlt.get(pt) : allBlt;
+  rebuildMultiSelect('ms-bltasdesc', 'f-bltasdesc', items, prev);
+}
+
+function refreshOccDropdown() {
+  const pt       = gval('f-proptype').toUpperCase();
+  const selBltas = getMultiSelectValuesByWrapper('ms-bltasdesc');
+  const prev     = getMultiSelectValuesByWrapper('ms-occtype');
+  const occs     = new Set();
+
+  if (pt && selBltas.size > 0) {
+    // Occupancy = occ values on rows where pt matches AND blt is in the user's
+    // selected Built As subset (same row = same building)
+    for (const blt of selBltas) {
+      const s = ptBltToOcc.get(pt + '§' + blt);
+      if (s) for (const v of s) occs.add(v);
+    }
+  } else if (pt) {
+    // Property Type selected, no Built As filter yet —
+    // show all occ values from rows matching this pt (same rows that populated Built As)
+    for (const [k, s] of ptBltToOcc) {
+      if (k.startsWith(pt + '§')) for (const v of s) occs.add(v);
+    }
+  } else if (selBltas.size > 0) {
+    // No pt, but Built As selected — collect occ across all pts for those blt values
+    for (const blt of selBltas) {
+      for (const [k, s] of ptBltToOcc) {
+        if (k.endsWith('§' + blt)) for (const v of s) occs.add(v);
+      }
+    }
+  } else {
+    // Nothing selected — full universe
+    for (const v of allOcc) occs.add(v);
+  }
+
+  rebuildMultiSelect('ms-occtype', 'f-occtype', occs, prev);
+}
+
+function toggleMs(wrapperId) {
+  const panel = document.querySelector(`#${wrapperId} .ms-panel`);
+  const isOpen = panel.classList.contains('open');
+  // Close all other panels first
+  document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open'));
+  if (!isOpen) panel.classList.add('open');
+}
+
+// Close panels when clicking outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ms-wrapper')) {
+    document.querySelectorAll('.ms-panel.open').forEach(p => p.classList.remove('open'));
+  }
+});
+
+function getMultiSelectValues(sel) {
+  const vals = new Set();
+  if (!sel) return vals;
+  for (const o of sel.options) { if (o.selected) vals.add(o.value); }
+  return vals;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LARIMER LOADING
+// ─────────────────────────────────────────────────────────────────────────────
+const BASE = 'https://raw.githubusercontent.com/bmannlein/Property-Search-Data/main/';
+
+const LAR_REMOTE = {
+  account:       BASE + 'assessor-public-account.csv',
+  improvement:   BASE + 'assessor-public-improvement.csv',
+  impdetail:     BASE + 'assessor-public-improvement-detail.csv',
+  landattr:      BASE + 'assessor-public-land-attributes.csv',
+  owner:         BASE + 'assessor-public-owner.csv',
+  ownerlocation: BASE + 'assessor-public-owner-location.csv',
+  sales:         BASE + 'assessor-public-sales.csv',
+  valuedetail:   BASE + 'assessor-public-value-detail.csv',
+};
+
+// File name → DB key mapping for local file loads
+const LAR_FILES = {
+  account:       'assessor-public-account.csv',
+  improvement:   'assessor-public-improvement.csv',
+  impdetail:     'assessor-public-improvement-detail.csv',
+  landattr:      'assessor-public-land-attributes.csv',
+  owner:         'assessor-public-owner.csv',
+  ownerlocation: 'assessor-public-owner-location.csv',
+  sales:         'assessor-public-sales.csv',
+  valuedetail:   'assessor-public-value-detail.csv',
+};
+
+// ── Shared load function (used by both remote auto-load and folder picker) ──
+async function larLoadFiles(getDataFn) {
+  const keys = Object.keys(LAR_REMOTE);
+  let done = 0;
+  setProgress('lar', 0, keys.length);
+  setStatus('lar', 'Loading…');
+  for (const key of keys) {
+    try {
+      const data = await getDataFn(key);
+      if (data) {
+        larDB[key] = data;
+        if (data.length > 0) console.log(`[Larimer ${key}] columns:`, Object.keys(data[0]));
+      } else {
+        larDB[key] = null;
+      }
+    } catch(e) {
+      larDB[key] = null;
+      console.warn(`[Larimer ${key}] load error:`, e);
+    }
+    done++;
+    setProgress('lar', done, keys.length);
+    updateUI();
+  }
+  updateUI();
+}
+
+// ── Fetch a remote CSV via fetch() so HTTP errors surface properly ──
+async function fetchRemoteCSV(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status} ${resp.statusText} — ${url}`);
+  const text = await resp.text();
+  const result = Papa.parse(text, {
+    header: true,
+    skipEmptyLines: true,
+    transformHeader: h => h.trim(),  // strip whitespace from all column names
+  });
+  if (result.errors && result.errors.length > 0) {
+    console.warn('PapaParse warnings for', url, result.errors.slice(0, 3));
+  }
+  return result.data;
+}
+
+// ── Cloud load from GitHub ──
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WELD LOADING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Pattern matching for local file loads
+const WELD_REMOTE = {
+  ownership: BASE + 'OwnershipGIS.csv',
+  acct:      BASE + 'AcctCurrentInvntry.csv',
+  imps:      BASE + 'ImpsCurrentInvntry.csv',
+  sales:     BASE + 'Sales.csv',
+};
+
+// Pattern matching for local file loads (case-insensitive exact filename match)
+const WELD_PATTERNS = { ownership: 'ownershipgis', acct: 'acctcurrentinvntry', imps: 'impscurrentinvntry', sales: 'sales' };
+
+function weldParse(text) {
+  return Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => h.trim() }).data;
+}
+
+// ── Shared Weld load function ──
+async function weldLoadFiles(getDataFn) {
+  const keys = Object.keys(WELD_REMOTE);
+  let done = 0;
+  setProgress('weld', 0, keys.length);
+  setStatus('weld', 'Loading…');
+  const errors = [];
+  for (const key of keys) {
+    try {
+      const data = await getDataFn(key);
+      if (data) {
+        weldDB[key] = data;
+        if (data.length > 0) console.log(`[Weld ${key}] columns:`, Object.keys(data[0]));
+      } else {
+        weldDB[key] = null;
+        errors.push(`${key}: file not found`);
+      }
+    } catch(e) {
+      weldDB[key] = null;
+      errors.push(`${key}: ${e.message}`);
+      console.warn(`[Weld ${key}] load error:`, e);
+    }
+    done++;
+    setProgress('weld', done, keys.length);
+    updateUI();
+  }
+  updateUI();
+  return errors;
+}
+
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// UNIFIED SEARCH
+// ─────────────────────────────────────────────────────────────────────────────
+function runSearch() {
+  if (!searchCache) return;
+  const c = searchCache;
+
+  const fOwner      = gval('f-owner').toUpperCase();
+  let fStreetLow  = gvalN('f-streetno-low');
+  let fStreetHigh = gvalN('f-streetno-high');
+  // If only one end is entered, treat it as an exact street number match
+  if (fStreetLow !== null && fStreetHigh === null) fStreetHigh = fStreetLow;
+  if (fStreetHigh !== null && fStreetLow === null) fStreetLow  = fStreetHigh;
+  const fStreet     = gval('f-streetname').toUpperCase();
+  const fSfMin      = gvalN('f-sf-min');
+  const fSfMax      = gvalN('f-sf-max');
+  const fUnitsMin   = gvalN('f-units-min');
+  const fUnitsMax   = gvalN('f-units-max');
+  const fAcresMin   = gvalN('f-acres-min');
+  const fAcresMax   = gvalN('f-acres-max');
+  const fPriceMin   = gvalN('f-price-min');
+  const fPriceMax   = gvalN('f-price-max');
+  const fDateMin    = gval('f-date-min');
+  const fDateMax    = gval('f-date-max');
+  const fPropType   = gval('f-proptype').toUpperCase();
+  const fCounty     = gval('f-county').toUpperCase();
+  const fCity       = gval('f-city').toUpperCase();
+  const fOccType    = getMultiSelectValuesByWrapper('ms-occtype');
+  const fBltasDesc  = getMultiSelectValuesByWrapper('ms-bltasdesc');
+
+  // O(1) blt/occ filter helpers using pre-grouped cache
+  function larBltSet(acc, pt) {
+    const bldgs = c.bldgsByAccLar.get(acc) || [];
+    const out = new Set();
+    for (const b of bldgs) {
+      if (pt && b.pt !== pt) continue;
+      if (b.blt) out.add(b.blt);
+    }
+    return out;
+  }
+  function larOccSet(acc, pt, selBltas) {
+    const bldgs = c.bldgsByAccLar.get(acc) || [];
+    const out = new Set();
+    for (const b of bldgs) {
+      if (pt && b.pt !== pt) continue;
+      if (selBltas.size > 0 && !selBltas.has(b.blt)) continue;
+      if (b.occ) out.add(b.occ);
+    }
+    return out;
+  }
+  function weldBltSet(acc, pt) {
+    const bldgs = c.bldgsByAccWeld.get(acc) || [];
+    const out = new Set();
+    for (const b of bldgs) {
+      if (pt && b.pt !== pt) continue;
+      if (b.blt) out.add(b.blt);
+    }
+    return out;
+  }
+  function weldOccSet(acc, pt, selBltas) {
+    const bldgs = c.bldgsByAccWeld.get(acc) || [];
+    const out = new Set();
+    for (const b of bldgs) {
+      if (pt && b.pt !== pt) continue;
+      if (selBltas.size > 0 && !selBltas.has(b.blt)) continue;
+      if (b.occ) out.add(b.occ);
+    }
+    return out;
+  }
+
+  const results = [];
+
+  // ── LARIMER ──────────────────────────────────────────────────────────────
+  const runLarimer = larDB.account && c.larImpMap && (fCounty === '' || fCounty === 'LARIMER');
+  if (runLarimer) {
+    for (const acct of larDB.account) {
+      const acc = acct.ACCOUNTNO;
+      if (!acc || acc[0].toUpperCase() !== 'R') continue;
+      const imp       = c.larImpMap.get(acc);
+      const owner     = c.larOwnerMap.get(acc);
+      const ownerLoc  = c.larOwnerLocMap.get(acc);
+      const sale      = c.larSalesMap.get(acc);
+      const unitCount = c.larUnitMap.get(acc) || 0;
+
+      const propType  = (imp?.PROPERTYTYPE || '').toUpperCase();
+      const sf        = parseFloat(imp?.SF) || 0;
+      const yearBuilt = parseFloat(imp?.BLTASYEARBUILT) > 0 ? parseFloat(imp.BLTASYEARBUILT) : '';
+      const acres     = parseFloat(acct.LANDGROSSACRES) || 0;
+
+      const n1 = (owner?.NAME1 || ownerLoc?.NAME1 || '').trim();
+      const n2 = (owner?.NAME2 || ownerLoc?.NAME2 || '').trim();
+      const ownerName = (n1 + (n2 ? ' ' + n2 : '')).toUpperCase();
+      const mailAddr1 = owner?.MAILADDRESS1 || ownerLoc?.MAILADDRESS1 || '';
+      const mailAddr2 = owner?.MAILADDRESS2 || ownerLoc?.MAILADDRESS2 || '';
+      const mailCity  = owner?.MAILCITY     || ownerLoc?.MAILCITY     || '';
+      const mailState = owner?.MAILSTATE    || ownerLoc?.MAILSTATE    || '';
+      const mailZip   = owner?.MAILZIPCODE  || ownerLoc?.MAILZIPCODE  || '';
+      const lastPrice = parseFloat(sale?.SALEPRICE) || 0;
+      const lastDate  = sale?._date || '';
+      const streetNum = parseFloat(acct.SITUSSTREETNO) || 0;
+
+      if (fOwner      && !ownerName.includes(fOwner))                                   continue;
+      if (fStreetLow  !== null && streetNum < fStreetLow)                               continue;
+      if (fStreetHigh !== null && streetNum > fStreetHigh)                              continue;
+      if (fStreet     && !(acct.SITUSSTREETNAME||'').toUpperCase().includes(fStreet))   continue;
+      if (fSfMin      !== null && sf < fSfMin)                                          continue;
+      if (fSfMax      !== null && sf > fSfMax)                                          continue;
+      if (fUnitsMin   !== null && unitCount < fUnitsMin)                                continue;
+      if (fUnitsMax   !== null && unitCount > fUnitsMax)                                continue;
+      if (fAcresMin   !== null && acres < fAcresMin)                                    continue;
+      if (fAcresMax   !== null && acres > fAcresMax)                                    continue;
+      if (fPriceMin   !== null && lastPrice < fPriceMin)                                continue;
+      if (fPriceMax   !== null && lastPrice > fPriceMax)                                continue;
+      if (fDateMin    && lastDate < fDateMin)                                            continue;
+      if (fDateMax    && lastDate > fDateMax)                                            continue;
+      if (fPropType   && propType !== fPropType)                                        continue;
+      if (fCity       && !(acct.SITUSCITY||'').toUpperCase().includes(fCity))           continue;
+      if (fOccType.size   > 0 && ![...fOccType].some(v  => larOccSet(acc, fPropType, fBltasDesc).has(v)))  continue;
+      if (fBltasDesc.size > 0 && ![...fBltasDesc].some(v => larBltSet(acc, fPropType).has(v)))             continue;
+
+      results.push({
+        _county:          'lar',
+        _url:             `https://www.larimer.gov/assessor/search#/detail/${encodeURIComponent(acc)}/general`,
+        _parcel:          (acct.PARCELNO || '').trim(),
+        ACCOUNTNO:        acc,
+        COUNTY:           'Larimer',
+        PROPERTY_ADDRESS: (acct.SITUSADDRESS || '').trim(),
+        PROP_CITY:        acct.SITUSCITY || '',
+        PROPTYPE:         propType,
+        DOC:              yearBuilt,
+        UNITS:            unitCount || '',
+        SF:               sf || '',
+        ACRES:            acres || '',
+        OWNERNAME:        [n1 + (n2 ? ' / ' + n2 : ''), mailAddr1].filter(Boolean).join(', ').trim(),
+        OWNER_ADDR:       mailAddr2,
+        OWNER_CITY:       mailCity,
+        OWNER_STATE:      mailState,
+        OWNER_ZIP:        mailZip,
+        LAST_SALEPRICE:   sale?.SALEPRICE || '',
+        LAST_SALEDATE:    lastDate,
+      });
+    }
+  }
+
+  // ── WELD ─────────────────────────────────────────────────────────────────
+  const runWeld = weldDB.ownership && c.weldImpsMap && (fCounty === '' || fCounty === 'WELD');
+  if (runWeld) {
+    const weldBldgCol = c.weldBldgCol;
+    for (const row of weldDB.ownership) {
+      const acc  = row.ACCOUNTNO;
+      if (!acc || acc[0].toUpperCase() !== 'R') continue;
+      const acct = c.weldAcctMap.get(acc);
+      const imp  = c.weldImpsMap.get(acc);
+      const sale = c.weldSalesMap.get(acc);
+
+      const impBldgId = imp && weldBldgCol ? (imp[weldBldgCol] || '').trim() : '';
+      const bldgsPrimary = c.bldgsByAccWeld.get(acc) || [];
+      const primaryBldg  = bldgsPrimary.find(b => b.rawId === impBldgId) || bldgsPrimary[0];
+      const propType  = (primaryBldg?.pt || acct?.PROPTYPE || row.ACCTTYPE || '').trim().toUpperCase();
+
+      const sf = parseFloat(acct?.TOTALIMPSSF) || parseFloat(imp?.SF) || parseFloat(row.SQFT) || 0;
+      const yrSet = c.weldImpsYrMap.get(acc);
+      const yrStr = yrSet && yrSet.size > 0
+        ? [...yrSet].sort((a,b)=>a-b).join(', ')
+        : (parseInt(acct?.YRBLT) > 0 ? String(parseInt(acct.YRBLT)) : '');
+      const units = c.weldImpsUnitsMap.get(acc) || 0;
+      const acres = parseFloat((acct?.GROSSACRES||'').toString().trim()) ||
+                    parseFloat((row.ACRES||'').toString().trim()) || 0;
+      const ownerName  = [(row.NAME||'').trim(), (row.CAREOF||'').trim()].filter(Boolean).join(', ').toUpperCase();
+      const lastPrice  = parseFloat((sale?.SALEP||'').toString().trim()) || 0;
+      const lastDate   = sale?._date || '';
+      const streetNum  = parseFloat(row.STREETNO) || 0;
+      const streetName = (row.STREETNAME||'').trim();
+      const propAddr   = [(row.STREETNO||'').trim(), (row.STREETALP||'').trim(),
+                          (row.STREETDIR||'').trim(), streetName,
+                          (row.STREETSUF||'').trim()].filter(Boolean).join(' ');
+
+      if (fOwner      && !ownerName.includes(fOwner))                                   continue;
+      if (fStreetLow  !== null && streetNum < fStreetLow)                               continue;
+      if (fStreetHigh !== null && streetNum > fStreetHigh)                              continue;
+      if (fStreet     && !streetName.toUpperCase().includes(fStreet))                   continue;
+      if (fSfMin      !== null && sf < fSfMin)                                          continue;
+      if (fSfMax      !== null && sf > fSfMax)                                          continue;
+      if (fUnitsMin   !== null && units < fUnitsMin)                                    continue;
+      if (fUnitsMax   !== null && units > fUnitsMax)                                    continue;
+      if (fAcresMin   !== null && acres < fAcresMin)                                    continue;
+      if (fAcresMax   !== null && acres > fAcresMax)                                    continue;
+      if (fPriceMin   !== null && lastPrice < fPriceMin)                                continue;
+      if (fPriceMax   !== null && lastPrice > fPriceMax)                                continue;
+      if (fDateMin    && lastDate < fDateMin)                                            continue;
+      if (fDateMax    && lastDate > fDateMax)                                            continue;
+      if (fPropType   && propType !== fPropType)                                        continue;
+      if (fCity       && !(row.LOCCITY||'').toUpperCase().includes(fCity))              continue;
+      if (fOccType.size   > 0 && ![...fOccType].some(v  => weldOccSet(acc, fPropType, fBltasDesc).has(v)))  continue;
+      if (fBltasDesc.size > 0 && ![...fBltasDesc].some(v => weldBltSet(acc, fPropType).has(v)))             continue;
+
+      results.push({
+        _county:          'weld',
+        _url:             `https://propertyreport.weld.gov/?account=${encodeURIComponent(acc)}`,
+        _parcel:          acc,
+        ACCOUNTNO:        acc,
+        COUNTY:           'Weld',
+        PROPERTY_ADDRESS: propAddr,
+        PROP_CITY:        row.LOCCITY   || '',
+        PROPTYPE:         propType,
+        DOC:              yrStr,
+        UNITS:            units || '',
+        SF:               sf || '',
+        ACRES:            acres || '',
+        OWNERNAME:        ownerName,
+        OWNER_ADDR:       row.ADDRESS1  || '',
+        OWNER_CITY:       row.CITY      || '',
+        OWNER_STATE:      row.STATE     || '',
+        OWNER_ZIP:        row.ZIPCODE   || '',
+        LAST_SALEPRICE:   sale?.SALEP   || '',
+        LAST_SALEDATE:    lastDate,
+      });
+    }
+  }
+
+  allResults = results;
+  sortCol = null; sortDir = 1; currentPage = 1;
+  document.getElementById('btn-export').disabled = results.length === 0;
+  renderTable();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER TABLE
+// ─────────────────────────────────────────────────────────────────────────────
+function renderTable() {
+  const wrap    = document.getElementById('table-wrap');
+  const countEl = document.getElementById('result-count');
+  countEl.textContent = allResults.length.toLocaleString();
+
+  if (allResults.length === 0) {
+    wrap.innerHTML = '<div class="empty-msg">No records match the current criteria.</div>';
+    document.getElementById('pagination').style.display = 'none';
+    return;
+  }
+
+  let rows = [...allResults];
+  if (sortCol) {
+    rows.sort((a, b) => {
+      const an = parseFloat(a[sortCol]), bn = parseFloat(b[sortCol]);
+      if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
+      return String(a[sortCol]).localeCompare(String(b[sortCol])) * sortDir;
+    });
+  }
+
+  const total = rows.length, totalPages = Math.ceil(total / PAGE_SIZE);
+  currentPage = Math.min(currentPage, totalPages);
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageRows = rows.slice(start, start + PAGE_SIZE);
+
+  const thead = '<thead><tr>' +
+    '<th style="width:28px;padding:4px 2px;text-align:center">Map</th>' +
+    '<th style="width:28px;padding:4px 2px;text-align:center">Map</th>' +
+    COLUMNS.map(c => {
+      const arrow  = sortCol === c.key ? (sortDir === 1 ? '▲' : '▼') : '⇅';
+      const sorted = sortCol === c.key ? ' sorted' : '';
+      return `<th class="${sorted}" onclick="sortBy('${c.key}')">${c.label} <span class="sort-arrow">${arrow}</span></th>`;
+    }).join('') + '</tr></thead>';
+
+  const tbody = '<tbody>' + pageRows.map(r => {
+    const rc = r._county === 'lar' ? 'row-lar' : 'row-weld';
+
+    // Column 1 — GIS parcel map (county-specific link + favicon)
+    let gisUrl, gisIcon;
+    if (r._county === 'lar') {
+      gisUrl  = 'https://maps1.larimer.org/gvh/?Viewer=LIL&run=Theme&theme=Land%20Information&run=Parcel&parcel=' + encodeURIComponent(r._parcel || '');
+      gisIcon = `<img src="https://www.larimer.gov/favicon.ico" width="16" height="16" style="display:block;margin:auto;cursor:pointer" alt="Larimer GIS">`;
+    } else {
+      gisUrl  = 'https://maps.weld.gov/propertyportal/?acct=' + encodeURIComponent(r._parcel || '');
+      gisIcon = `<img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="16" height="16" style="display:block;margin:auto;cursor:pointer" alt="Weld GIS">`;
+    }
+    const gisCell = `<td style="text-align:center;padding:2px" onclick="event.stopPropagation();window.open('${gisUrl}','_blank')" title="Open parcel in ${r._county === 'lar' ? 'Larimer' : 'Weld'} GIS">${gisIcon}</td>`;
+
+    // Column 2 — Google Maps
+    const mapAddr = encodeURIComponent(((r.PROPERTY_ADDRESS || '') + ' ' + (r.PROP_CITY || '') + ' CO').trim());
+    const mapUrl  = `https://www.google.com/maps/search/?api=1&query=${mapAddr}`;
+    const mapCell = `<td style="text-align:center;padding:2px;white-space:nowrap" onclick="event.stopPropagation();window.open('${mapUrl}','_blank')" title="Open in Google Maps">` +
+      `<img src="https://www.google.com/images/branding/product/ico/web_maps_icon_32dp.ico" width="16" height="16" style="display:block;margin:auto;cursor:pointer" alt="Google Maps"></td>`;
+    const cells = COLUMNS.map(c => {
+      let v = r[c.key], display;
+      if (c.key === 'PROPERTY_ADDRESS') {
+        display = v || '—';
+      } else if (c.key === 'LAST_SALEPRICE') { display = fmtPrice(v);
+      } else if (c.key === 'LAST_SALEDATE')  { display = fmtDate(v);
+      } else if (c.key === 'SF')    { const n = parseInt(v, 10); display = n > 0 ? n.toLocaleString() : '—';
+      } else if (c.key === 'ACRES') { const n = parseFloat(v);  display = n > 0 ? n.toLocaleString(undefined,{minimumFractionDigits:3,maximumFractionDigits:3}) : '—';
+      } else if (c.key === 'UNITS') { const n = parseFloat(v);  display = n > 0 ? n.toLocaleString() : '—';
+      } else if (c.key === 'OWNER_ZIP') { display = fmtZip(v);
+      } else { display = v || '—'; }
+      return `<td class="${c.cls}" title="${String(v??'').replace(/"/g,'&quot;')}">${display}</td>`;
+    }).join('');
+    return `<tr class="${rc}" onclick="window.open('${r._url}','_blank')" style="cursor:pointer">${gisCell}${mapCell}${cells}</tr>`;
+  }).join('') + '</tbody>';
+
+  wrap.innerHTML = '<table>' + thead + tbody + '</table>';
+
+  const pgEl = document.getElementById('pagination');
+  pgEl.style.display = 'flex';
+  document.getElementById('page-info').textContent =
+    `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, total)} of ${total.toLocaleString()}`;
+
+  let btns = `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹ Prev</button>`;
+  for (const p of pageRange(currentPage, totalPages)) {
+    if (p === '…') btns += `<span style="padding:4px 6px;color:#aaa">…</span>`;
+    else btns += `<button class="page-btn ${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+  }
+  btns += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next ›</button>`;
+  document.getElementById('page-btns').innerHTML = btns;
+}
+
+function goPage(p) {
+  const total = Math.ceil(allResults.length / PAGE_SIZE);
+  if (p < 1 || p > total) return;
+  currentPage = p; renderTable();
+  document.getElementById('table-wrap').scrollTop = 0;
+}
+
+function sortBy(col) {
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+  renderTable();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLEAR & EXPORT
+// ─────────────────────────────────────────────────────────────────────────────
+function clearSearch() {
+  ['f-owner','f-streetno-low','f-streetno-high','f-streetname',
+   'f-sf-min','f-sf-max','f-units-min','f-units-max',
+   'f-acres-min','f-acres-max','f-price-min','f-price-max',
+   'f-date-min','f-date-max','f-city'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('f-proptype').value = '';
+  document.getElementById('f-county').value   = '';
+  ['ms-bltasdesc','ms-occtype'].forEach(id => {
+    const w = document.getElementById(id);
+    if (w) w.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+  });
+  refreshBltasDropdown();
+  refreshOccDropdown();
+  allResults = [];
+  document.getElementById('result-count').textContent = '—';
+  document.getElementById('btn-export').disabled = true;
+  document.getElementById('table-wrap').innerHTML = '<div class="status-msg">Search cleared. Enter new criteria and click Search.</div>';
+  document.getElementById('pagination').style.display = 'none';
+}
+
+function exportCSV() {
+  if (!allResults.length) return;
+  const cols = [
+    { key: 'PROPERTY_ADDRESS', label: 'Property Address' },
+    { key: 'PROP_CITY',        label: 'Property City' },
+    { key: 'DOC',              label: 'Built' },
+    { key: 'LAST_SALEPRICE',   label: 'Last Sale' },
+    { key: 'LAST_SALEDATE',    label: 'Sale Date' },
+    { key: 'UNITS',            label: 'Units' },
+    { key: 'SF',               label: 'Sq Ft' },
+    { key: 'ACRES',            label: 'Acres' },
+    { key: 'OWNERNAME',        label: 'Owner Name' },
+    { key: 'OWNER_ADDR',       label: 'Owner Address' },
+    { key: 'OWNER_CITY',       label: 'Owner City' },
+    { key: 'OWNER_STATE',      label: 'State' },
+    { key: 'OWNER_ZIP',        label: 'Owner Zip' },
+    { key: 'PROPTYPE',         label: 'Property Type' },
+    { key: '_url',             label: 'Assessor Link' },
+  ];
+  const csv = [[...cols.map(c => csvEsc(c.label))],
+    ...allResults.map(r => cols.map(c => csvEsc(r[c.key] ?? '')))
+  ].map(r => r.join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'colorado_property_search_results.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INDEXED DB PERSISTENCE — each table stored as its own key
+// ─────────────────────────────────────────────────────────────────────────────
+const IDB_NAME    = 'PropertySearchDB';
+const IDB_VERSION = 2;
+const IDB_STORE   = 'dataStore';
+
+function idbOpen() {
+  return new Promise((res, rej) => {
+    if (!window.indexedDB) { rej(new Error('IndexedDB not available')); return; }
+    const req = indexedDB.open(IDB_NAME, IDB_VERSION);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(IDB_STORE)) db.createObjectStore(IDB_STORE);
+    };
+    req.onsuccess = e => res(e.target.result);
+    req.onerror   = e => rej(e.target.error);
+    req.onblocked = () => rej(new Error('IndexedDB blocked'));
+  });
+}
+
+function idbPut(db, key, value) {
+  return new Promise((res, rej) => {
+    const tx  = db.transaction(IDB_STORE, 'readwrite');
+    tx.oncomplete = () => res();
+    tx.onerror    = e => rej(e.target.error);
+    tx.objectStore(IDB_STORE).put(value, key);
+  });
+}
+
+function idbGet(db, key) {
+  return new Promise((res, rej) => {
+    const tx  = db.transaction(IDB_STORE, 'readonly');
+    const req = tx.objectStore(IDB_STORE).get(key);
+    req.onsuccess = e => res(e.target.result ?? null);
+    req.onerror   = e => rej(e.target.error);
+  });
+}
+
+async function saveToIDB() {
+  try {
+    const db      = await idbOpen();
+    const savedAt = new Date().toISOString();
+    // Save each table individually so no single write is enormous
+    const writes = [];
+    for (const [k, v] of Object.entries(larDB))  { if (v) writes.push(idbPut(db, 'lar_'  + k, v)); }
+    for (const [k, v] of Object.entries(weldDB)) { if (v) writes.push(idbPut(db, 'weld_' + k, v)); }
+    writes.push(idbPut(db, 'meta', { savedAt }));
+    await Promise.all(writes);
+    console.log('[IDB] ✅ saved', writes.length - 1, 'tables at', savedAt);
+  } catch(e) {
+    console.warn('[IDB] ❌ save failed:', e.message || e);
+  }
+}
+
+async function loadFromIDB() {
+  try {
+    const db   = await idbOpen();
+    const meta = await idbGet(db, 'meta');
+    if (!meta?.savedAt) { console.log('[IDB] no cached data found'); return null; }
+
+    // Load all tables in parallel
+    const larKeys  = Object.keys(larDB);
+    const weldKeys = Object.keys(weldDB);
+    const [larVals, weldVals] = await Promise.all([
+      Promise.all(larKeys.map(k  => idbGet(db, 'lar_'  + k))),
+      Promise.all(weldKeys.map(k => idbGet(db, 'weld_' + k))),
+    ]);
+
+    const restoredLar  = Object.fromEntries(larKeys.map( (k, i) => [k, larVals[i]]));
+    const restoredWeld = Object.fromEntries(weldKeys.map((k, i) => [k, weldVals[i]]));
+
+    console.log('[IDB] ✅ found cached data from', meta.savedAt);
+    return { larDB: restoredLar, weldDB: restoredWeld, savedAt: meta.savedAt };
+  } catch(e) {
+    console.warn('[IDB] ❌ load failed:', e.message || e);
+    return null;
+  }
+}
+
+function fmtSavedAt(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) +
+         ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+// Enter key
+document.querySelectorAll('.field-input').forEach(el => {
+  el.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+});
+
+// ── On page open: check IndexedDB first, fall back to cloud ──
+document.addEventListener('DOMContentLoaded', async () => {
+  const statusEl = document.getElementById('status-msg');
+  statusEl.innerHTML = '⏳ Checking for cached data…';
+
+  let cached = null;
+  try { cached = await loadFromIDB(); } catch(e) { console.warn('[IDB] load error:', e); }
+
+  const larOk  = cached?.larDB?.account?.length  > 0 && cached?.larDB?.improvement?.length > 0;
+  const weldOk = cached?.weldDB?.ownership?.length > 0 && cached?.weldDB?.imps?.length > 0;
+
+  console.log('[Init] cached larOk:', larOk, ' weldOk:', weldOk);
+
+  if (larOk || weldOk) {
+    if (larOk)  { Object.keys(cached.larDB).forEach(k  => { larDB[k]  = cached.larDB[k];  }); }
+    if (weldOk) { Object.keys(cached.weldDB).forEach(k => { weldDB[k] = cached.weldDB[k]; }); }
+    const when = fmtSavedAt(cached.savedAt);
+    statusEl.innerHTML = `✅ Using cached data from <strong>${when}</strong> — load Cloud or Local files to refresh.`;
+    updateUI();
+  } else {
+    statusEl.innerHTML = '⏳ Loading data from GitHub…';
+    startCloudLoadAll();
+  }
+});
+</script>
+</body>
+</html>
