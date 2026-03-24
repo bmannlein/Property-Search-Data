@@ -185,7 +185,7 @@
     </div>
     <span class="loader-pct" id="lar-pct" style="display:none">0%</span>
     <span class="status-light red" id="lar-light"></span>
-    <span class="loader-status" id="lar-status">Checking…</span>
+    <span class="loader-status" id="lar-status">Checking data integrity…</span>
   </div>
 
   <!-- Weld -->
@@ -198,7 +198,7 @@
     </div>
     <span class="loader-pct" id="weld-pct" style="display:none">0%</span>
     <span class="status-light red" id="weld-light"></span>
-    <span class="loader-status" id="weld-status">Checking…</span>
+    <span class="loader-status" id="weld-status">Checking data integrity…</span>
   </div>
 
 </div>
@@ -1994,8 +1994,8 @@ document.querySelectorAll('.field-input').forEach(el => {
 document.addEventListener('DOMContentLoaded', async () => {
   const statusEl = document.getElementById('status-msg');
   statusEl.innerHTML = '⏳ Checking for cached data…';
-  setStatus('lar',  'Checking…');
-  setStatus('weld', 'Checking…');
+  setStatus('lar',  'Checking data integrity…');
+  setStatus('weld', 'Checking data integrity…');
 
   let cached = null;
   try { cached = await loadFromIDB(); } catch(e) { console.warn('[IDB] load error:', e); }
