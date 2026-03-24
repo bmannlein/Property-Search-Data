@@ -55,6 +55,11 @@
   .lar-bar  .loader-pct    { color: #1a4a7a; }
   .weld-bar .loader-pct   { color: #1a5c35; }
   .loader-status { font-size: 0.63rem; min-width: 120px; }
+  .status-light { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; transition: background 0.3s; box-shadow: 0 0 4px rgba(0,0,0,0.3); }
+  .status-light.red    { background: #e53e3e; box-shadow: 0 0 6px rgba(229,62,62,0.7); }
+  .status-light.green  { background: #38a169; box-shadow: 0 0 6px rgba(56,161,105,0.7); }
+  .status-light.yellow { background: #d69e2e; box-shadow: 0 0 6px rgba(214,158,46,0.7); }
+  .status-light.grey   { background: #718096; box-shadow: none; }
   .lar-bar  .loader-status { color: rgba(26,74,122,0.65); }
   .weld-bar .loader-status { color: rgba(26,92,53,0.65); }
   .import-btns   { display: flex; gap: 7px; flex-shrink: 0; }
@@ -179,6 +184,7 @@
       <div class="loader-progress-fill" id="lar-progress-bar" style="width:0%"></div>
     </div>
     <span class="loader-pct" id="lar-pct" style="display:none">0%</span>
+    <span class="status-light red" id="lar-light"></span>
     <span class="loader-status" id="lar-status">Checking…</span>
   </div>
 
@@ -191,6 +197,7 @@
       <div class="loader-progress-fill" id="weld-progress-bar" style="width:0%"></div>
     </div>
     <span class="loader-pct" id="weld-pct" style="display:none">0%</span>
+    <span class="status-light red" id="weld-light"></span>
     <span class="loader-status" id="weld-status">Checking…</span>
   </div>
 
@@ -702,6 +709,16 @@ function disableImportBtns(prefix) {
 function setStatus(prefix, msg) {
   const el = document.getElementById(prefix + '-status');
   if (el) el.textContent = msg;
+  const light = document.getElementById(prefix + '-light');
+  if (!light) return;
+  const m = msg.trim();
+  if (m.startsWith('✓')) {
+    light.className = 'status-light green';
+  } else if (m.startsWith('⚠') || m.includes('failed') || m.includes('Failed')) {
+    light.className = 'status-light grey';
+  } else {
+    light.className = 'status-light red';
+  }
 }
 
 async function startCloudUpdate() {
