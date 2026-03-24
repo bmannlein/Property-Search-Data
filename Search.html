@@ -562,8 +562,8 @@ function toProperCase(str) {
   if (!s) return s;
   const keepUpper = new Set([
     'N','S','E','W','NE','NW','SE','SW','NNE','NNW','SSE','SSW','ENE','ESE','WNW','WSW',
-    'APT','STE','UNIT','BLDG','FL','RM',
-    'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
+    'APT','UNIT','BLDG','FL','RM',
+    'AL','AK','AZ','AR','CA','CO','DE','FL','GA','HI','ID','IL','IN','IA',
     'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
     'NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT',
     'VA','WA','WV','WI','WY','DC',
@@ -592,6 +592,7 @@ function toProperCase(str) {
 // Expand abbreviated street suffixes — applied only to property/owner address fields
 const STREET_SUFFIX_MAP = {
   'St':   'Street',  'Ave':  'Avenue',   'Blvd': 'Boulevard', 'Dr':   'Drive',
+  'Ste':  'Suite',   'Ct':   'Court',
   'Ln':   'Lane',    'Rd':   'Road',     'Ct':   'Court',     'Cir':  'Circle',
   'Pl':   'Place',   'Trl':  'Trail',    'Hwy':  'Highway',   'Pky':  'Parkway',
   'Pkwy': 'Parkway', 'Fwy':  'Freeway',  'Sq':   'Square',    'Loop': 'Loop',
@@ -602,11 +603,17 @@ const STREET_SUFFIX_MAP = {
 };
 function expandStreetSuffix(str) {
   if (!str) return str;
-  // Only expand the last word of each slash-separated segment (handles "123 Main St / Unit 4")
   return str.split('/').map(seg => {
     const words = seg.trimEnd().split(' ');
+    // Expand last word (street type suffix)
     const last = words[words.length - 1];
     if (STREET_SUFFIX_MAP[last]) words[words.length - 1] = STREET_SUFFIX_MAP[last];
+    // Also expand Ste/Apt/Unit mid-address when followed by a number or alphanumeric unit
+    for (let i = 0; i < words.length - 1; i++) {
+      if (STREET_SUFFIX_MAP[words[i]] && /^[0-9A-Za-z]+$/.test(words[i + 1])) {
+        words[i] = STREET_SUFFIX_MAP[words[i]];
+      }
+    }
     return words.join(' ');
   }).join('/');
 }
