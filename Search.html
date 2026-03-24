@@ -213,7 +213,7 @@
       <div class="panel-title">Search Criteria<strong>Larimer &amp; Weld County Assessor Records</strong></div>
       <div>
         <button id="btn-update-data" style="background:#4a5568;color:#e2e8f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;margin-right:6px;"
-          onclick="startCloudUpdate()" title="Re-download all data from GitHub">
+          onclick="promptUpdatePassword()" title="Re-download all data from GitHub">
           🔄 Update Data
         </button>
         <button id="btn-local-all" style="background:#4a4a6a;color:#d0d0f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;"
@@ -719,6 +719,21 @@ function setStatus(prefix, msg) {
   } else {
     light.className = 'status-light red';
   }
+}
+
+const UPDATE_PW_HASH = '287e022f3d2434d5c9dde4cc7356f0e7bb2396b339aa4e5fd8ed9ec993f4b8a0';
+
+async function promptUpdatePassword() {
+  const input = prompt('Enter password to update data:');
+  if (input === null) return;  // cancelled
+  const encoded = new TextEncoder().encode(input);
+  const hashBuf = await crypto.subtle.digest('SHA-256', encoded);
+  const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (hashHex !== UPDATE_PW_HASH) {
+    alert('Incorrect password.');
+    return;
+  }
+  startCloudUpdate();
 }
 
 async function startCloudUpdate() {
