@@ -272,7 +272,9 @@
       </div>
       <div class="field-group span2">
         <label class="field-label">Property City</label>
-        <input class="field-input" id="f-city" placeholder="e.g. Fort Collins" autocomplete="off">
+        <select class="field-input" id="f-city">
+          <option value="">— All Cities —</option>
+        </select>
       </div>
 
       <!-- Row 3: SF Range, Land Area Range, Units Range -->
@@ -495,11 +497,22 @@ function buildSearchCache() {
       if (!acc) continue;
       if (!c.weldOwnersByAcc.has(acc)) c.weldOwnersByAcc.set(acc, []);
       c.weldOwnersByAcc.get(acc).push(row);
-      // Track best address row: prefer any row with ADDRESS1 over first-seen
+      // Track best address row: prefer the row with a populated CITY (most complete address).
+      // Fall back to any row with ADDRESS2, then ADDRESS1, then first-seen.
+      const hasCity  = !!(row.CITY || '').trim();
+      const hasAddr2 = !!(row.ADDRESS2 || '').trim();
+      const hasAddr1 = !!(row.ADDRESS1 || '').trim();
       if (!c.weldOwnerMap.has(acc)) {
-        c.weldOwnerMap.set(acc, row);
-      } else if ((row.ADDRESS2 || '').trim()) {
-        c.weldOwnerMap.set(acc, row);
+        c.weldOwnerMap.set(acc, row);                         // first seen — always store
+      } else {
+        const cur = c.weldOwnerMap.get(acc);
+        const curHasCity = !!(cur.CITY || '').trim();
+        const curHasAddr = !!(cur.ADDRESS2 || cur.ADDRESS1 || '').trim();
+        if (hasCity && !curHasCity) {
+          c.weldOwnerMap.set(acc, row);                       // city beats no city
+        } else if (!curHasAddr && (hasAddr2 || hasAddr1)) {
+          c.weldOwnerMap.set(acc, row);                       // any address beats none
+        }
       }
     }
 
@@ -601,6 +614,26 @@ function expandStreetSuffix(str) {
     if (STREET_SUFFIX_MAP[last]) words[words.length - 1] = STREET_SUFFIX_MAP[last];
     return words.join(' ');
   }).join('/');
+}
+
+// Weld ownership rows sometimes have column shift due to unquoted commas in
+// BUSINESSNAME — when that happens LOCCITY contains a number and the city
+// name lands in STREETSUF. Detect and correct.
+function weldLocCity(row) {
+  const loc = (row.LOCCITY || '').trim();
+  if (loc && /^\d+$/.test(loc)) {
+    // Shifted row — city is in STREETSUF
+    return (row.STREETSUF || '').trim();
+  }
+  return loc;
+}
+function weldStreetSuf(row) {
+  const loc = (row.LOCCITY || '').trim();
+  if (loc && /^\d+$/.test(loc)) {
+    // Shifted row — STREETSUF has the city, actual suffix is lost
+    return '';
+  }
+  return (row.STREETSUF || '').trim();
 }
 
 function normaliseWeldDate(raw) {
@@ -923,6 +956,7 @@ function populatePropTypeDropdown() {
   for (const t of [...types].sort()) { const o = document.createElement('option'); o.value = t; o.textContent = t; sel.appendChild(o); }
   if (cur) sel.value = cur;
 
+  populateCityDropdown();
   refreshBltasDropdown();
   refreshOccDropdown();
 
@@ -937,6 +971,33 @@ function populatePropTypeDropdown() {
       refreshOccDropdown();
     });
   }
+}
+
+function populateCityDropdown() {
+  const cities = new Set();
+  if (larDB.account) {
+    for (const r of larDB.account) {
+      const c = (r.SITUSCITY || '').trim();
+      if (c) cities.add(toProperCase(c));
+    }
+  }
+  if (weldDB.ownership) {
+    for (const r of weldDB.ownership) {
+      const c = weldLocCity(r);
+      if (c) cities.add(toProperCase(c));
+    }
+  }
+  const sel = document.getElementById('f-city');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— All Cities —</option>';
+  for (const city of [...cities].sort()) {
+    const o = document.createElement('option');
+    o.value = city;
+    o.textContent = city;
+    sel.appendChild(o);
+  }
+  // Restore previously selected value if it still exists
+  if (cur) sel.value = cur;
 }
 
 function clearMsWrapper(wrapperId, hiddenId) {
@@ -1263,7 +1324,7 @@ function runSearch() {
   const fDateMax    = gval('f-date-max');
   const fPropType   = gval('f-proptype').toUpperCase();
   const fCounty     = gval('f-county').toUpperCase();
-  const fCity       = gval('f-city').toUpperCase();
+  const fCity       = gval('f-city');  // dropdown values are already proper-cased
   const fOccType    = getMultiSelectValuesByWrapper('ms-occtype');
   const fBltasDesc  = getMultiSelectValuesByWrapper('ms-bltasdesc');
 
@@ -1353,7 +1414,7 @@ function runSearch() {
       if (fDateMin    && (!lastDate || lastDate < fDateMin))                             continue;
       if (fDateMax    && (!lastDate || lastDate > fDateMax))                             continue;
       if (fPropType   && propType !== fPropType)                                        continue;
-      if (fCity       && !(acct.SITUSCITY||'').toUpperCase().includes(fCity))           continue;
+      if (fCity       && toProperCase((acct.SITUSCITY||'').trim()) !== fCity)           continue;
       if (fOccType.size   > 0 && ![...fOccType].some(v  => larOccSet(acc, fPropType, fBltasDesc).has(v)))  continue;
       if (fBltasDesc.size > 0 && ![...fBltasDesc].some(v => larBltSet(acc, fPropType).has(v)))             continue;
 
@@ -1425,7 +1486,7 @@ function runSearch() {
       const streetName = (row.STREETNAME||'').trim();
       const propAddr   = [(row.STREETNO||'').trim(), (row.STREETALP||'').trim(),
                           (row.STREETDIR||'').trim(), streetName,
-                          (row.STREETSUF||'').trim()].filter(Boolean).join(' ');
+                          weldStreetSuf(row)].filter(Boolean).join(' ');
 
       // Owner name filter — check against all combined owner names
       if (fOwner      && !ownerNames.includes(fOwner))                                  continue;
@@ -1443,7 +1504,7 @@ function runSearch() {
       if (fDateMin    && (!lastDate || lastDate < fDateMin))                             continue;
       if (fDateMax    && (!lastDate || lastDate > fDateMax))                             continue;
       if (fPropType   && propType !== fPropType)                                        continue;
-      if (fCity       && !(row.LOCCITY||'').toUpperCase().includes(fCity))              continue;
+      if (fCity       && toProperCase(weldLocCity(row)) !== fCity)              continue;
       if (fOccType.size   > 0 && ![...fOccType].some(v  => weldOccSet(acc, fPropType, fBltasDesc).has(v)))  continue;
       if (fBltasDesc.size > 0 && ![...fBltasDesc].some(v => weldBltSet(acc, fPropType).has(v)))             continue;
 
@@ -1454,14 +1515,14 @@ function runSearch() {
         ACCOUNTNO:        acc,
         COUNTY:           'Weld',
         PROPERTY_ADDRESS: propAddr,
-        PROP_CITY:        row.LOCCITY      || '',
+        PROP_CITY:        weldLocCity(row) || '',
         PROPTYPE:         propType,
         DOC:              yrStr,
         UNITS:            units || '',
         SF:               sf || '',
         ACRES:            acres || '',
         OWNERNAME:        ownerNames,
-        OWNER_ADDR:       addrRow.ADDRESS2 || '',
+        OWNER_ADDR:       (addrRow.ADDRESS2 || addrRow.ADDRESS1 || '').trim(),
         OWNER_CITY:       addrRow.CITY     || '',
         OWNER_STATE:      addrRow.STATE    || '',
         OWNER_ZIP:        addrRow.ZIPCODE  || '',
