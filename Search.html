@@ -486,6 +486,23 @@ function buildSearchCache() {
       c.bldgsByAccWeld.get(acc).push(b);
     }
 
+    // ownersByAcc: ACCOUNTNO → Array of all ownership rows (for collecting all owner names)
+    // ownerMap:    ACCOUNTNO → best row that has a mailing address (for address fields)
+    c.weldOwnersByAcc = new Map();
+    c.weldOwnerMap    = new Map();
+    for (const row of (weldDB.ownership || [])) {
+      const acc = (row.ACCOUNTNO || '').trim();
+      if (!acc) continue;
+      if (!c.weldOwnersByAcc.has(acc)) c.weldOwnersByAcc.set(acc, []);
+      c.weldOwnersByAcc.get(acc).push(row);
+      // Track best address row: prefer any row with ADDRESS1 over first-seen
+      if (!c.weldOwnerMap.has(acc)) {
+        c.weldOwnerMap.set(acc, row);
+      } else if ((row.ADDRESS2 || '').trim()) {
+        c.weldOwnerMap.set(acc, row);
+      }
+    }
+
     // salesMap: ACCOUNTNO → most recent non-zero sale
     c.weldSalesMap = new Map();
     for (const row of (weldDB.sales || [])) {
@@ -1368,9 +1385,13 @@ function runSearch() {
   const runWeld = weldDB.ownership && c.weldImpsMap && (fCounty === '' || fCounty === 'WELD');
   if (runWeld) {
     const weldBldgCol = c.weldBldgCol;
+    const seenWeld = new Set();  // deduplicate — ownership has one row per owner per account
     for (const row of weldDB.ownership) {
-      const acc  = row.ACCOUNTNO;
+      const acc  = (row.ACCOUNTNO || '').trim();
       if (!acc || acc[0].toUpperCase() !== 'R') continue;
+      if (seenWeld.has(acc)) continue;   // already emitted a result row for this property
+      seenWeld.add(acc);
+
       const acct = c.weldAcctMap.get(acc);
       const imp  = c.weldImpsMap.get(acc);
 
@@ -1387,7 +1408,17 @@ function runSearch() {
       const units = c.weldImpsUnitsMap.get(acc) || 0;
       const acres = parseFloat((acct?.GROSSACRES||'').toString().trim()) ||
                     parseFloat((row.ACRES||'').toString().trim()) || 0;
-      const ownerName  = [(row.NAME||'').trim(), (row.CAREOF||'').trim()].filter(Boolean).join(', ').toUpperCase();
+
+      // Collect all owner names for this account using pre-grouped cache (O(1))
+      const allOwnerRows = c.weldOwnersByAcc.get(acc) || [row];
+      const ownerNames = [...new Set(
+        allOwnerRows.map(r => [(r.NAME||'').trim(), (r.CAREOF||'').trim()].filter(Boolean).join(', '))
+                    .filter(Boolean)
+      )].join(' / ').toUpperCase();
+
+      // Use the owner row that has a mailing address for address fields
+      const addrRow = c.weldOwnerMap.get(acc) || row;
+
       const lastPrice  = parseFloat((row.SALEP||'').toString().trim()) || 0;
       const lastDate   = normaliseWeldDate(row.SALEDT);
       const streetNum  = parseFloat(row.STREETNO) || 0;
@@ -1396,7 +1427,8 @@ function runSearch() {
                           (row.STREETDIR||'').trim(), streetName,
                           (row.STREETSUF||'').trim()].filter(Boolean).join(' ');
 
-      if (fOwner      && !ownerName.includes(fOwner))                                   continue;
+      // Owner name filter — check against all combined owner names
+      if (fOwner      && !ownerNames.includes(fOwner))                                  continue;
       if (fStreetLow  !== null && streetNum < fStreetLow)                               continue;
       if (fStreetHigh !== null && streetNum > fStreetHigh)                              continue;
       if (fStreet     && !streetName.toUpperCase().includes(fStreet))                   continue;
@@ -1422,17 +1454,17 @@ function runSearch() {
         ACCOUNTNO:        acc,
         COUNTY:           'Weld',
         PROPERTY_ADDRESS: propAddr,
-        PROP_CITY:        row.LOCCITY   || '',
+        PROP_CITY:        row.LOCCITY      || '',
         PROPTYPE:         propType,
         DOC:              yrStr,
         UNITS:            units || '',
         SF:               sf || '',
         ACRES:            acres || '',
-        OWNERNAME:        ownerName,
-        OWNER_ADDR:       row.ADDRESS1  || '',
-        OWNER_CITY:       row.CITY      || '',
-        OWNER_STATE:      row.STATE     || '',
-        OWNER_ZIP:        row.ZIPCODE   || '',
+        OWNERNAME:        ownerNames,
+        OWNER_ADDR:       addrRow.ADDRESS2 || '',
+        OWNER_CITY:       addrRow.CITY     || '',
+        OWNER_STATE:      addrRow.STATE    || '',
+        OWNER_ZIP:        addrRow.ZIPCODE  || '',
         LAST_SALEPRICE:   row.SALEP || '',
         LAST_SALEDATE:    lastDate,
       });
