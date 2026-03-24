@@ -628,6 +628,12 @@ function setStatus(prefix, msg) {
 }
 
 async function startCloudUpdate() {
+  // status-msg lives inside table-wrap and gets replaced when results render —
+  // restore it so we have somewhere to show load progress
+  const tableWrap = document.getElementById('table-wrap');
+  if (!document.getElementById('status-msg')) {
+    tableWrap.innerHTML = '<div class="status-msg" id="status-msg"></div>';
+  }
   const statusEl = document.getElementById('status-msg');
   statusEl.innerHTML = '⏳ <strong>Loading data from GitHub…</strong>';
   setStatus('lar',  'Loading data…');
