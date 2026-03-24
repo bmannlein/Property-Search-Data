@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+<rect width="32" height="32" rx="5" fill="#0d0a04"/>
+<!-- Tiny grid -->
+<line x1="0" y1="10" x2="32" y2="10" stroke="#3a2c14" stroke-width="0.4"/>
+<line x1="0" y1="20" x2="32" y2="20" stroke="#3a2c14" stroke-width="0.4"/>
+<line x1="10" y1="0" x2="10" y2="32" stroke="#3a2c14" stroke-width="0.4"/>
+<line x1="22" y1="0" x2="22" y2="32" stroke="#3a2c14" stroke-width="0.4"/>
+<!-- Hex -->
+<polygon points="13,2 21,6.6 21,15.4 13,20 5,15.4 5,6.6" fill="#050301"/>
+<polygon points="13,2 21,6.6 21,15.4 13,20 5,15.4 5,6.6" fill="none" stroke="#e07830" stroke-width="1.5"/>
+<!-- House in hex -->
+<polygon points="7,13.5 13,8 19,13.5" fill="#e07830"/>
+<rect x="9" y="13.5" width="8" height="5.5" fill="#e07830"/>
+<rect x="11.5" y="15.5" width="3" height="3.5" fill="#050301"/>
+<!-- Magnifier (bottom right) -->
+<circle cx="23" cy="24" r="5" fill="#050301"/>
+<circle cx="23" cy="24" r="5" fill="none" stroke="#e07830" stroke-width="1.5"/>
+<line x1="27" y1="28" x2="30" y2="31" stroke="#e07830" stroke-width="2" stroke-linecap="round"/>
+</svg>
