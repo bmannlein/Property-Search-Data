@@ -533,8 +533,7 @@ function toProperCase(str) {
   if (!s) return s;
   const keepUpper = new Set([
     'N','S','E','W','NE','NW','SE','SW','NNE','NNW','SSE','SSW','ENE','ESE','WNW','WSW',
-    'ST','AVE','BLVD','DR','LN','RD','CT','CIR','PL','TRL','HWY','PKY','PKWY',
-    'FWY','SQ','LOOP','XING','RTE','RT','APT','STE','UNIT','BLDG','FL','RM',
+    'APT','STE','UNIT','BLDG','FL','RM',
     'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
     'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
     'NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT',
@@ -561,6 +560,28 @@ function toProperCase(str) {
     return pre + core.charAt(0).toUpperCase() + core.slice(1).toLowerCase() + post;
   }).join(' ');
 }
+// Expand abbreviated street suffixes — applied only to property/owner address fields
+const STREET_SUFFIX_MAP = {
+  'St':   'Street',  'Ave':  'Avenue',   'Blvd': 'Boulevard', 'Dr':   'Drive',
+  'Ln':   'Lane',    'Rd':   'Road',     'Ct':   'Court',     'Cir':  'Circle',
+  'Pl':   'Place',   'Trl':  'Trail',    'Hwy':  'Highway',   'Pky':  'Parkway',
+  'Pkwy': 'Parkway', 'Fwy':  'Freeway',  'Sq':   'Square',    'Loop': 'Loop',
+  'Xing': 'Crossing','Rte':  'Route',    'Rt':   'Route',     'Way':  'Way',
+  'Pass': 'Pass',    'Path': 'Path',     'Pike': 'Pike',      'Ter':  'Terrace',
+  'Terr': 'Terrace', 'Trce': 'Trace',    'Holw': 'Hollow',   'Aly':  'Alley',
+  'Expy': 'Expressway',
+};
+function expandStreetSuffix(str) {
+  if (!str) return str;
+  // Only expand the last word of each slash-separated segment (handles "123 Main St / Unit 4")
+  return str.split('/').map(seg => {
+    const words = seg.trimEnd().split(' ');
+    const last = words[words.length - 1];
+    if (STREET_SUFFIX_MAP[last]) words[words.length - 1] = STREET_SUFFIX_MAP[last];
+    return words.join(' ');
+  }).join('/');
+}
+
 function normaliseWeldDate(raw) {
   const s = (raw || '').toString().trim();
   if (!s) return '';
@@ -1478,10 +1499,10 @@ function renderTable() {
       `<img src="https://www.google.com/images/branding/product/ico/web_maps_icon_32dp.ico" width="16" height="16" style="display:block;margin:auto;cursor:pointer" alt="Google Maps"></td>`;
     const cells = COLUMNS.map(c => {
       let v = r[c.key], display;
-      if (c.key === 'PROPERTY_ADDRESS') { display = toProperCase(v) || '—';
+      if (c.key === 'PROPERTY_ADDRESS') { display = expandStreetSuffix(toProperCase(v)) || '—';
       } else if (c.key === 'PROP_CITY')  { display = toProperCase(v) || '—';
       } else if (c.key === 'OWNERNAME')  { display = toProperCase(v) || '—';
-      } else if (c.key === 'OWNER_ADDR') { display = toProperCase(v) || '—';
+      } else if (c.key === 'OWNER_ADDR') { display = expandStreetSuffix(toProperCase(v)) || '—';
       } else if (c.key === 'OWNER_CITY') { display = toProperCase(v) || '—';
       } else if (c.key === 'LAST_SALEPRICE') { display = fmtPrice(v);
       } else if (c.key === 'LAST_SALEDATE')  { display = fmtDate(v);
@@ -1569,7 +1590,8 @@ function exportCSV() {
   const csv = [[...cols.map(c => csvEsc(c.label))],
     ...allResults.map(r => cols.map(c => {
       const raw = r[c.key] ?? '';
-      const val = textFields.has(c.key) ? (toProperCase(String(raw)) || '') : raw;
+      const addrFields = new Set(['PROPERTY_ADDRESS','OWNER_ADDR']);
+      const val = textFields.has(c.key) ? (addrFields.has(c.key) ? (expandStreetSuffix(toProperCase(String(raw))) || '') : (toProperCase(String(raw)) || '')) : raw;
       return csvEsc(val);
     }))
   ].map(r => r.join(',')).join('\n');
