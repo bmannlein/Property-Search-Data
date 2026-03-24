@@ -767,8 +767,8 @@ function updateUI() {
   // Weld: searchable once ownership + acct + imps are loaded (sales enriches but isn't required)
   const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
 
-  const LAR_ICO  = '<img src="https://www.larimer.gov/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px">';
-  const WELD_ICO = '<img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px">';
+  const LAR_ICO  = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#2b5b8a" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
+  const WELD_ICO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#2e6b47" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
   const bl = document.getElementById('badge-lar');
   const bw = document.getElementById('badge-weld');
   if (larCore) {
@@ -1605,6 +1605,7 @@ function mapAllResults() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/x-icon;base64,AAABAAEAAQEAAAEAGAAoAAAAFgAAACgAAAABAAAAAgAAAAEAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 <title>Property Map — ${rows.length} Results</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"><\/script>
@@ -1625,10 +1626,6 @@ function mapAllResults() {
   .popup-lbl { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: #888; white-space: nowrap; }
   .popup-val { font-size: 0.75rem; color: #222; font-weight: 600; }
   .popup-divider { border: none; border-top: 1px solid #ddd; margin: 6px 0; }
-  .popup-link { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; color: #fff; background: #2b5b8a; padding: 4px 10px; border-radius: 3px; text-decoration: none; margin-top: 4px; }
-  .popup-link.weld { background: #2e6b47; }
-  .popup-link:hover { opacity: 0.85; }
-  .popup-link img { vertical-align: middle; }
   .leaflet-popup-content { margin: 12px 14px; }
 </style>
 </head>
@@ -1645,8 +1642,9 @@ function mapAllResults() {
 const ROWS = ${JSON.stringify(rows)};
 
 const map = L.map('map');
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
 
@@ -1660,9 +1658,7 @@ function fmtAcres(v) { const n = parseFloat(v); return n > 0 ? n.toLocaleString(
 
 function buildPopup(r) {
   const isLar = r.county === 'Larimer';
-  const ico   = isLar
-    ? '<img src="https://www.larimer.gov/favicon.ico" width="13" height="13">'
-    : '<img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="13" height="13">';
+
   const rows = [
     ['Property Type', r.type   || '—'],
     ['Year Built',    r.built  || '—'],
@@ -1680,8 +1676,7 @@ function buildPopup(r) {
     + '<span class="popup-badge ' + (isLar ? 'lar' : 'weld') + '">' + r.county + ' County</span>'
     + '<div class="popup-grid">' + rows + '</div>'
     + '<hr class="popup-divider">'
-    + '<a class="popup-link ' + (isLar ? '' : 'weld') + '" href="' + r.url + '" target="_blank" rel="noopener">'
-    + ico + ' View in ' + r.county + ' Assessor</a>'
+    + '<div style="text-align:center;margin-top:6px"><a href="' + r.url + '" target="_blank" rel="noopener" style="font-size:0.75rem;font-weight:700;color:' + (isLar ? '#2b5b8a' : '#2e6b47') + ';text-decoration:none;">' + (isLar ? 'Larimer Property Data' : 'Weld Property Data') + '</a></div>'
     + '</div>';
 }
 
