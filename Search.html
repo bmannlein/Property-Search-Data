@@ -38,9 +38,7 @@
   .site-header .subtitle { font-size: 0.72rem; color: #7ea3c4; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
   .header-meta { text-align: right; font-size: 0.68rem; color: #5577aa; line-height: 2; }
   .header-meta strong { color: #8bb8dd; }
-  .data-badges { display: flex; gap: 8px; justify-content: flex-end; margin-top: 5px; flex-wrap: wrap; }
-  .data-badge { font-size: 0.62rem; font-weight: 600; padding: 2px 9px; border-radius: 10px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.35); white-space: nowrap; transition: all 0.2s; }
-  .data-badge.loaded { background: rgba(46,125,82,0.3); border-color: rgba(46,125,82,0.6); color: #8dffc4; }
+
 
   /* LOADERS */
   .loader-section { border-bottom: 2px solid rgba(255,255,255,0.06); }
@@ -165,10 +163,7 @@
   </div>
   <div class="header-meta">
     <div>Sources: <strong>larimer.gov</strong> &amp; <strong>weld.gov</strong></div>
-    <div class="data-badges">
-      <span class="data-badge" id="badge-lar"><img src="https://www.larimer.gov/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px"> Larimer: No Data</span>
-      <span class="data-badge" id="badge-weld"><img src="https://apps.weld.gov/propertyportal/assets/images/favicon.ico" width="13" height="13" style="vertical-align:middle;margin-right:3px"> Weld: No Data</span>
-    </div>
+
   </div>
 </header>
 
@@ -210,13 +205,13 @@
     <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between;">
       <div class="panel-title">Search Criteria<strong>Larimer &amp; Weld County Assessor Records</strong></div>
       <div>
-        <button id="btn-update-data" style="background:#2e6b47;color:#c0f0d8;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;margin-right:6px;"
+        <button id="btn-update-data" style="background:#4a5568;color:#e2e8f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;margin-right:6px;"
           onclick="startCloudUpdate()" title="Re-download all data from GitHub">
           🔄 Update Data
         </button>
         <button id="btn-local-all" style="background:#4a4a6a;color:#d0d0f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;"
           onclick="document.getElementById('all-file-input').click()" title="Select local CSV files for both counties">
-          📁 Load Local Files
+          📁 Local Data
         </button>
         <input type="file" id="all-file-input" multiple accept=".csv" style="display:none" onchange="startLocalLoadAll(this.files)">
       </div>
@@ -343,7 +338,7 @@
       <div class="results-title">Results<strong>Matching Properties</strong></div>
       <div class="results-actions">
         <div class="result-count"><span id="result-count">—</span> records</div>
-        <button class="btn-map" id="btn-map" onclick="mapAllResults()" disabled>🗺 Map All Results</button>
+        <button class="btn-map" id="btn-map" onclick="mapAllResults()" disabled>🗺 Map Results</button>
         <button class="btn-export" id="btn-export" onclick="exportCSV()" disabled>⬇ Export CSV</button>
       </div>
     </div>
@@ -738,7 +733,7 @@ async function startCloudUpdate() {
   } else if (weldCore) {
     statusEl.innerHTML = '✅ Weld loaded. ⚠️ Larimer failed — check repo <strong>bmannlein/Property-Search-Data</strong>.';
   } else {
-    statusEl.innerHTML = '❌ Cloud load failed — check that <strong>bmannlein/Property-Search-Data</strong> is public and filenames match. Use 📁 Load Local Files to load manually.';
+    statusEl.innerHTML = '❌ Cloud load failed — check that <strong>bmannlein/Property-Search-Data</strong> is public and filenames match. Use 📁 Local Data to load manually.';
     setStatus('lar',  'Load failed');
     setStatus('weld', 'Load failed');
   }
@@ -817,32 +812,13 @@ function updateUI() {
   // Weld: searchable once ownership + acct + imps are loaded (sales enriches but isn't required)
   const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
 
-  const LAR_ICO  = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#2b5b8a" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
-  const WELD_ICO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#2e6b47" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
-  const bl = document.getElementById('badge-lar');
-  const bw = document.getElementById('badge-weld');
   if (larCore) {
-    const loadedCount = Object.values(larDB).filter(v => v !== null).length;
-    bl.innerHTML = `${LAR_ICO}Larimer: ${larDB.account.length.toLocaleString()} accts (${loadedCount}/8 files)`;
-    bl.classList.add('loaded');
     setStatus('lar', `✓ ${larDB.account.length.toLocaleString()} accounts loaded${dataDate ? ' · ' + fmtSavedAt(dataDate) : ''}`);
-  } else {
-    const loadedCount = Object.values(larDB).filter(v => v !== null).length;
-    bl.innerHTML = loadedCount > 0 ? `${LAR_ICO}Larimer: Loading… (${loadedCount}/8)` : `${LAR_ICO}Larimer: No Data`;
-    bl.classList.remove('loaded');
   }
   if (weldCore) {
-    const loadedCount = Object.values(weldDB).filter(v => v !== null).length;
-    bw.innerHTML = `${WELD_ICO}Weld: ${weldDB.ownership.length.toLocaleString()} accts (${loadedCount}/4 files)`;
-    bw.classList.add('loaded');
     setStatus('weld', `✓ ${weldDB.ownership.length.toLocaleString()} accounts loaded${dataDate ? ' · ' + fmtSavedAt(dataDate) : ''}`);
-  } else {
-    const loadedCount = Object.values(weldDB).filter(v => v !== null).length;
-    bw.innerHTML = loadedCount > 0 ? `${WELD_ICO}Weld: Loading… (${loadedCount}/4)` : `${WELD_ICO}Weld: No Data`;
-    bw.classList.remove('loaded');
   }
-
-  document.getElementById('btn-search').disabled = !(larCore || weldCore);
+    document.getElementById('btn-search').disabled = !(larCore || weldCore);
   if (larCore || weldCore) {
     buildSearchCache();
     populatePropTypeDropdown();
@@ -1555,10 +1531,20 @@ function renderTable() {
 
   let rows = [...allResults];
   if (sortCol) {
+    const DATE_COLS = new Set(['LAST_SALEDATE']);
     rows.sort((a, b) => {
-      const an = parseFloat(a[sortCol]), bn = parseFloat(b[sortCol]);
+      const av = a[sortCol] ?? '', bv = b[sortCol] ?? '';
+      // Date columns: compare ISO strings directly (YYYY-MM-DD sorts lexicographically).
+      // Empty dates always sort to the end regardless of direction.
+      if (DATE_COLS.has(sortCol)) {
+        if (!av && !bv) return 0;
+        if (!av) return 1;
+        if (!bv) return -1;
+        return av < bv ? -sortDir : av > bv ? sortDir : 0;
+      }
+      const an = parseFloat(av), bn = parseFloat(bv);
       if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
-      return String(a[sortCol]).localeCompare(String(b[sortCol])) * sortDir;
+      return String(av).localeCompare(String(bv)) * sortDir;
     });
   }
 
