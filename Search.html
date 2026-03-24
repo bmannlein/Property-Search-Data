@@ -207,6 +207,10 @@
     <div class="panel-header" style="display:flex;align-items:center;justify-content:space-between;">
       <div class="panel-title">Search Criteria<strong>Larimer &amp; Weld County Assessor Records</strong></div>
       <div>
+        <button id="btn-update-data" style="background:#2e6b47;color:#c0f0d8;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;margin-right:6px;"
+          onclick="startCloudUpdate()" title="Re-download all data from GitHub">
+          🔄 Update Data
+        </button>
         <button id="btn-local-all" style="background:#4a4a6a;color:#d0d0f0;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:3px;border:none;cursor:pointer;white-space:nowrap;"
           onclick="document.getElementById('all-file-input').click()" title="Select local CSV files for both counties">
           📁 Load Local Files
@@ -623,30 +627,42 @@ function setStatus(prefix, msg) {
   if (el) el.textContent = msg;
 }
 
-async function startCloudLoadAll() {
+async function startCloudUpdate() {
   const statusEl = document.getElementById('status-msg');
-  statusEl.innerHTML = '⏳ <strong>Loading all data from GitHub…</strong>';
+  statusEl.innerHTML = '⏳ <strong>Loading data from GitHub…</strong>';
+  setStatus('lar',  'Loading data…');
+  setStatus('weld', 'Loading data…');
 
-  await Promise.all([
-    larLoadFiles(key => fetchRemoteCSV(LAR_REMOTE[key])),
-    weldLoadFiles(key => fetchRemoteCSV(WELD_REMOTE[key])),
-  ]);
+  // Disable Update Data button while loading
+  const updBtn = document.getElementById('btn-update-data');
+  if (updBtn) updBtn.disabled = true;
+
+  // Load counties sequentially — concurrent loads interleave updateUI() calls
+  // into shared state and can stall Weld's progress loop
+  await larLoadFiles(key => fetchRemoteCSV(LAR_REMOTE[key]));
+  await weldLoadFiles(key => fetchRemoteCSV(WELD_REMOTE[key]));
 
   const larCore  = larDB.account !== null && larDB.improvement !== null && larDB.sales !== null;
   const weldCore = weldDB.ownership !== null && weldDB.acct !== null && weldDB.imps !== null;
 
+  if (larCore || weldCore) {
+    await saveToIDB();   // sets dataDate to now
+    updateUI();          // re-render status bars with the freshly-set dataDate
+  }
+
   if (larCore && weldCore) {
-    await saveToIDB();
     statusEl.innerHTML = '✅ Larimer &amp; Weld loaded from GitHub and cached for next visit.';
   } else if (larCore) {
-    await saveToIDB();
     statusEl.innerHTML = '✅ Larimer loaded. ⚠️ Weld failed — check repo <strong>bmannlein/Property-Search-Data</strong>.';
   } else if (weldCore) {
-    await saveToIDB();
     statusEl.innerHTML = '✅ Weld loaded. ⚠️ Larimer failed — check repo <strong>bmannlein/Property-Search-Data</strong>.';
   } else {
     statusEl.innerHTML = '❌ Cloud load failed — check that <strong>bmannlein/Property-Search-Data</strong> is public and filenames match. Use 📁 Load Local Files to load manually.';
+    setStatus('lar',  'Load failed');
+    setStatus('weld', 'Load failed');
   }
+
+  if (updBtn) updBtn.disabled = false;
 }
 
 async function startLocalLoadAll(files) {
@@ -1054,20 +1070,32 @@ async function larLoadFiles(getDataFn) {
   updateUI();
 }
 
-// ── Fetch a remote CSV via fetch() so HTTP errors surface properly ──
-async function fetchRemoteCSV(url) {
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`HTTP ${resp.status} ${resp.statusText} — ${url}`);
-  const text = await resp.text();
-  const result = Papa.parse(text, {
-    header: true,
-    skipEmptyLines: true,
-    transformHeader: h => h.trim(),  // strip whitespace from all column names
-  });
-  if (result.errors && result.errors.length > 0) {
-    console.warn('PapaParse warnings for', url, result.errors.slice(0, 3));
+// ── Fetch a remote CSV with a timeout so stalled connections fail cleanly ──
+async function fetchRemoteCSV(url, timeoutMs = 90000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const resp = await fetch(url, { signal: controller.signal });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status} — ${url.split('/').pop()}`);
+    const text = await resp.text();
+    // GitHub returns an HTML 404 page for missing files even with 200 on some CDN paths
+    if (text.trimStart().startsWith('<')) throw new Error(`Got HTML instead of CSV — ${url.split('/').pop()} may not exist in repo`);
+    const result = Papa.parse(text, {
+      header: true,
+      skipEmptyLines: true,
+      transformHeader: h => h.trim(),
+    });
+    if (result.errors && result.errors.length > 0) {
+      console.warn('PapaParse warnings for', url, result.errors.slice(0, 3));
+    }
+    console.log(`[fetch] ${url.split('/').pop()} → ${result.data.length} rows`);
+    return result.data;
+  } catch(e) {
+    if (e.name === 'AbortError') throw new Error(`Timeout (90s) — ${url.split('/').pop()} may be too large or unavailable`);
+    throw e;
+  } finally {
+    clearTimeout(timer);
   }
-  return result.data;
 }
 
 // ── Cloud load from GitHub ──
@@ -1077,52 +1105,84 @@ async function fetchRemoteCSV(url) {
 // WELD LOADING
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Pattern matching for local file loads
+// Core keys must come first — sales is optional enrichment loaded after weldCore is satisfied
 const WELD_REMOTE = {
-  ownership: BASE + 'OwnershipGIS.csv',
+  ownership: BASE + 'Ownership.csv',
   acct:      BASE + 'AcctCurrentInvntry.csv',
   imps:      BASE + 'ImpsCurrentInvntry.csv',
-  sales:     BASE + 'Sales.csv',
+  sales:     BASE + 'Sales.csv',   // optional — loaded last, non-blocking
 };
+const WELD_CORE_KEYS = ['ownership', 'acct', 'imps'];
 
 // Pattern matching for local file loads (case-insensitive exact filename match)
-const WELD_PATTERNS = { ownership: 'ownershipgis', acct: 'acctcurrentinvntry', imps: 'impscurrentinvntry', sales: 'sales' };
+const WELD_PATTERNS = { ownership: 'ownership', acct: 'acctcurrentinvntry', imps: 'impscurrentinvntry', sales: 'sales' };
 
 function weldParse(text) {
   return Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => h.trim() }).data;
 }
 
 // ── Shared Weld load function ──
+// Loads core files (ownership, acct, imps) sequentially, then fires sales
+// as a background task so it can never stall the rest of the load.
 async function weldLoadFiles(getDataFn) {
-  const keys = Object.keys(WELD_REMOTE);
+  const allKeys = Object.keys(WELD_REMOTE);
   let done = 0;
-  setProgress('weld', 0, keys.length);
+  setProgress('weld', 0, allKeys.length);
   setStatus('weld', 'Loading…');
   await yieldToBrowser();
   const errors = [];
-  for (const key of keys) {
+
+  // ── Phase 1: core files — block until all 3 are done ──
+  for (const key of WELD_CORE_KEYS) {
     setStatus('weld', `Loading ${key}…`);
     await yieldToBrowser();
     try {
       const data = await getDataFn(key);
       if (data === undefined) {
-        // No file provided for this key — leave existing data untouched
+        // No file provided — leave existing data untouched
       } else if (data) {
         weldDB[key] = data;
-        if (data.length > 0) console.log(`[Weld ${key}] columns:`, Object.keys(data[0]));
+        console.log(`[Weld ${key}] ${data.length} rows`);
       } else {
         weldDB[key] = null;
-        errors.push(`${key}: file not found`);
+        const msg = `${key}: empty response`;
+        errors.push(msg);
+        setStatus('weld', `⚠ ${msg}`);
       }
     } catch(e) {
       weldDB[key] = null;
-      errors.push(`${key}: ${e.message}`);
+      const msg = `${key}: ${e.message}`;
+      errors.push(msg);
+      setStatus('weld', `⚠ ${msg}`);
       console.warn(`[Weld ${key}] load error:`, e);
     }
     done++;
-    setProgress('weld', done, keys.length);
+    setProgress('weld', done, allKeys.length);
     updateUI();
   }
+
+  // ── Phase 2: sales — fire and forget so it cannot block weldCore completion ──
+  setStatus('weld', 'Loading sales…');
+  await yieldToBrowser();
+  getDataFn('sales').then(data => {
+    if (data === undefined) return;
+    if (data) {
+      weldDB.sales = data;
+      console.log('[Weld sales] loaded', data.length, 'rows');
+    } else {
+      weldDB.sales = null;
+    }
+    done++;
+    setProgress('weld', done, allKeys.length);
+    updateUI();
+  }).catch(e => {
+    weldDB.sales = null;
+    console.warn('[Weld sales] load error (non-fatal):', e.message || e);
+    done++;
+    setProgress('weld', done, allKeys.length);
+  });
+
+  // Return after core files — sales continues in background
   updateUI();
   return errors;
 }
@@ -1617,10 +1677,12 @@ document.querySelectorAll('.field-input').forEach(el => {
   el.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
 });
 
-// ── On page open: check IndexedDB first, fall back to cloud ──
+// ── On page open: check IndexedDB first, auto-load from cloud if nothing cached ──
 document.addEventListener('DOMContentLoaded', async () => {
   const statusEl = document.getElementById('status-msg');
   statusEl.innerHTML = '⏳ Checking for cached data…';
+  setStatus('lar',  'Checking…');
+  setStatus('weld', 'Checking…');
 
   let cached = null;
   try { cached = await loadFromIDB(); } catch(e) { console.warn('[IDB] load error:', e); }
@@ -1631,15 +1693,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log('[Init] cached larOk:', larOk, ' weldOk:', weldOk);
 
   if (larOk || weldOk) {
+    // Cached data found — use it immediately, no network request needed
     if (larOk)  { Object.keys(cached.larDB).forEach(k  => { larDB[k]  = cached.larDB[k];  }); }
     if (weldOk) { Object.keys(cached.weldDB).forEach(k => { weldDB[k] = cached.weldDB[k]; }); }
     dataDate = cached.savedAt || '';
     const when = fmtSavedAt(cached.savedAt);
-    statusEl.innerHTML = `✅ Using cached data from <strong>${when}</strong> — load Cloud or Local files to refresh.`;
+    statusEl.innerHTML = `✅ Using cached data from <strong>${when}</strong> — click 🔄 Update Data to refresh.`;
     updateUI();
   } else {
-    statusEl.innerHTML = '⏳ Loading data from GitHub…';
-    startCloudLoadAll();
+    // No cached data — auto-load from cloud, showing status in both bars
+    setStatus('lar',  'Loading data…');
+    setStatus('weld', 'Loading data…');
+    statusEl.innerHTML = '⏳ <strong>No cached data found. Loading data from GitHub…</strong>';
+    startCloudUpdate();
   }
 });
 </script>
