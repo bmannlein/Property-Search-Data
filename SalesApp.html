@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Brian Mannlein | Sales Performance</title>
+
+<!-- iPhone "Add to Home Screen" app behavior -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sales Perf">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a2744">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAMN0lEQVR4nO3daVAUZx7H8e7hnuESxRMjSlAEg9F4BOIRbwQPTIwoYIyQyuaysqWVq3azSSW7STYxccuYwy1T8QZBDSRGDKKgEjxQPEBRUUA5BeS+BHpmX5AaJzP+5ZmZbmZ68/u8m/GZ7qfkSzPT3dPNn/rInwN4EIWlJwDWC3EACXEACXEACXEAydbwqWd2Du79eYDF7Y8u13sGWw4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gIQ4gPeAeb4xeWDH/b2ufF3EqhjQaTVeX0NHZ2dLSXtfQfLe2vqS8uvh25ZVrxXn5NxubWs1Z+M+7P/XzHWbmDFe99nHWmVwzF0J5ZXX42lcjzFzItviUf36x3bTXmh5HL+B53s7O1s7OVqV06u/Zh+OGav9Jrdbk5Rcezsj+6dBv5ZU1lpphbHSYRHHY2dmuXDZPiiWzk+ufFYWCDwzwWffa8vTkjRs/ecN3hJdFpjEtaKxEq14UMsWzn7sUS2Yn1zi0FAp+/uwnf9796VtrIm1tbXp/AjFRYdIsNlSKxRqFP/WRv95T5txXdsHc4A3/WsMysqm5dfyMWN1nHB3slUpHldLRa7Cn7wgv/1Hes6ZNcHdzZl/72fNXX1r7eVOz6e9Fdm3+x6Txo416SUdH5/SFa2pqG0xeqaFpQWO/3/iOsa/a8F3CN9//aPJKrfq+su33OmrrGkvKqk5mX96+59d3Ptz85LyXX1r7eUFhKeMSJozz++Grdx3s7SSdpx57ezvR3xzErlwg7gJNY0VxGBIEIf1EzsLId/677SfGl4wd86jUn6EMRS6d4+ToINbS/HyHBU8cI9bSzGHVcXQTBOHzTXE/7D7IOH75M7MeGz1C0inpcXdzXrJgmlhLe9E6NhucLOLotv7r+LKKapaRPM+/tGqRKCstul3BOHJ1ZKhCwZu/xgGeHmFzgrQP6xua6xuazV+saWQTR0dH53dbkxkHz54+wVnlZP5Kk3450dDYwjLSe+jAmVOfMH+NL6wI0f3MFbc/7V5Hh/mLNY1s4uA4LiPzPONIW1ubyU/ofwozQWtbe0LSUcbBsWZ/plUqHSOWzNI+7OoSdiammrlMc8gpjsqq2pKyKsbBo0d6i7LSHQm/CoLAMnLCOL9Afx9z1hURPtPFWal9eCA1q6q6zpwFmklOcXAcV1XD+p/lNbifKGusuHP30NEzjINjok3feNgoFKuWz9d9ZmtcislLE4XM4qirb2Ic6axS9jyIDfsHpZBZk4cMMjHK+bOf1H3tmZz8y1eLTFuUWGQWh60t65FCQa0Wa6UX826czy1gGWn4289Ob6vDXqR0ZBaHRx8XxpE1NfUirpf9R7UsfIbu+wZGk8aP1t03c6uk8uiJc8YuRHRyioPnea9BnoyDy0Q9jp969AzjiQEqpVNE+Exjlx8b/YcdX9viD6nVGmMXIjo5xeHn+4hHH1fGwceyLoi4akGt3rHnV8bBzy8PsbEx4vjw8GGDZ0wZp33Y2NS678Ax4+YnDTnFEaqz6/DhbhSV3iwqE3fte5KOtra2s4wcNKDv/NmT2ZccExXK8/f3riYkHWFckdRkE4dnP/dVy0MYB3/2VZzoE2hqbt37M+svdGwU6/ERjz6uS8LuH5cRBGE78yZKavKIw97e7osPX2c88nkw7VT6iRwpprEtPoXxrcCY0cMZzwuJfm6u7jkGKUdOV9y5a+L8xCaDOPq4u3y7fl3QxACWwZmnLr35/jcSzeR26Z30TNbs9N5jPpCDvV3U0jm6z1jDJ1gtq47DxVkZtXRO6t4vpwWN7XGwRqPZHn/o5XXrOzo6pZsS+w9vxpRxw4f1cE7dkgXTdN9i51y6funyTdMnJzYrOvvcwd5OpXJyVjl5Dx04yveRxx/znR78OONpXecuXtvwbcLpc1eknuTpc1euXCv2H+Xd40ie52MiQ9/7ZMvDB+g+Y1WbDc6Ccbg4KwuyzX3bWFlVezzrYkLy0Yt5N0SZFYutcSmfffAKy8jwsKlffruH2uU/c+p43U1LWUX14fRscaYoEivacrDQaDS5VwrPXrh6s7jsQu6N6zdLen8OB1Kz3lyzwrOve48jHR3so5bO3bRl3wP/9UWDHV8i7vIXhVW/5zDE83xggM+zC5+OWDLr5RcWRy2d0+PfddF1dnbt2nuYcbDehxGtQH+fCeP8tA9bWtsSk9PFmZ94ZLbl6Obmqgr09wn091kY8hTHcXeqa1PTs3cmphYW659cL5Hdew+/sjqc5f1QXw/XxaFTEpL0f/B655cnJmc0t7SJOUUxWCwOw++t2NjYOKucXJyVbq6qkT5D/Ud5jw8cGRjQ8+kzAzw9Vi6bt3LZvKzsvI2b9567eE2yWf+urr4p+WDmsvAZLINjIsMSkzM0mvs7SIYM6jdv5iTtQ0Gt3hZ/SPxZms2KthyCIDQ0Njc0NpeWc5evFv34y3GO44YPG7xs8dMrI0JYfk2DJ44JmhCwa+/h9ZviW1ql/UXcGneQMQ6f4UOmB4/N+O2C9pnVkaE2ivt/0NMyzpaWs57h1pus/T1H0a3yf2/cvWD5W2fPX2UZz/N89HNzf9r1iffQgZJOrKCwNPPUJcbBMTp7012clc8t+kNV1vYJVsva4+hWXFK58tV/sh9ofcRrQNyWD4YO6S/lpIw4jS9oYsDokb9f7mHFs7OVSkftP126crMX/g6aRh5xcBzX1SWsefs/VwtuMY7v5+G2+cs3Jf1q5PGTF9mP/XbvTbe1tXk+4g/fnbTazQYnozg4jmtrv/fxhh3s431HeL0au0S6+Wg0mq3xrBuPsDlBAzw9Fs57aoCnh/bJyqralLTT0sxOBHKKg+O4k9mXz+Tks49fHRnq5qqSbj5Jv5xg/EZa9zZD78IK2/ccYvzeg0XILA6O49KOnWUf7OToEDY3WLrJtN/riNufxjg4JipM90JTbW332L8xZRHyi4P9M0I3liO65tiZmNrVxfTbr3dtmX0HjjF+19JS5BdH4S3WLzd3035MkEhVdd3BtJPGvkqt1myz9HeWeiS/OARBMOo6ggP799U9Q1MKJnziSM/MKS6plGIyIpJfHBzHNTQacVUChYK3t5N2R3BefhHjPjota/4EqyXLOFQ6O5F6pFZrOjq7pJtMN6N+2PnXb/XCeUnmk18cPM+7GXMVuabmFt2DXhJJO27E8RFZbDY4OcYxsL+H7lGrHhUZ+QbWNGq1hvHIanVN/YHULKnnIwr5xRE86TGjxufmF0o0Ez2M52TsTEztlP7PnCjkF8f0YOP2WxzTOVYuKZazuYzaaWZxMovDZ/iQuTqnyfSosqo287RUF6431ON5oEkHT7BfYsTi5BQHz/Pv/jXaqDccW3Yc6M2DF2UV1WkZ5N59jUZj8Yv1GMWKzgTr0ftvrZ4e/Dj7+Pzrt3r/gmuvv72hl9coHXnE0cfd5b11q7pPJ2ZUV9/0+tsbrPmYp/Wz9jg8+7kvnj/1L6sWGXWF/Lu1jbFvfHq79I50E/szsKI4bBQKlcpRpXRyc1X5eA/xGzlsbMCjk5/wN/bKwOdzC9b+fZN1nrIrL6bfUqMXbuNlrJrahq+37I/bl8by1TGTb+Nl5p0rHiIn/XsTrif2cOy38TK8pYYVbTnMkZdftOfHI8kpmW3t9yw9l/8fMo6jtq7xfG7ByezLR46fwx8RKVhvHIIgdHYJnZ1dLa3tTc2tDY0t1TV1d6rryiqqC4vLbxSVWfC+f38SIt/GC+TLqm/jBdYGcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQAJcQDJ1vApwxvew58TthxAQhxAQhxAQhxAQhxA+h+FzcMKWDqGKAAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,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">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d1117; --paper: #f5f2eb; --rule: #d4cfc4;
+    --deep: #1a2744; --mid: #2d5087; --accent: #c8832a; --accent2: #4a8c5c;
+    --light-bg: #edeae0; --white: #fdfcf8; --shadow: rgba(13,17,23,0.12);
+    --font: 'Calibri', 'Trebuchet MS', sans-serif;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font); background: var(--paper); color: var(--ink); min-height: 100vh;
+    padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--deep);
+    padding: calc(20px + env(safe-area-inset-top)) 40px 16px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-bottom: 3px solid var(--accent);
+    gap: 12px;
+  }
+  .site-header h1 { font-family: 'Fraunces', 'Georgia', serif; font-weight: 700; font-size: 1.75rem; color: var(--white); letter-spacing: -0.02em; line-height: 1; }
+  .site-header .subtitle { font-size: 0.8rem; color: #8899bb; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 5px; }
+  .header-right { text-align: right; }
+  .header-meta { font-size: 0.85rem; color: #5577aa; letter-spacing: 0.08em; line-height: 1.8; }
+  .data-source-label { font-size: 0.78rem; color: #4466aa; margin-top: 4px; }
+
+  /* BROWSE / LOAD BUTTON (in detail card header) */
+  .load-btn {
+    font-family: var(--font); font-size: 0.72rem; padding: 5px 13px;
+    background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 3px; cursor: pointer;
+    transition: all 0.1s; white-space: nowrap;
+  }
+  .load-btn:hover { background: rgba(255,255,255,0.25); color: #fff; }
+
+  /* RIBBON */
+  .ribbon {
+    background: var(--deep); padding: 10px 220px 10px 220px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .kpi-group { display: flex; align-items: center; gap: 0; }
+  .kpi-block {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 4px 24px; border-left: 1px solid rgba(255,255,255,0.1);
+  }
+  .kpi-block:first-child { border-left: none; }
+  .kpi-label { font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 2px; white-space: nowrap; }
+  .kpi-pair { display: flex; align-items: baseline; gap: 5px; white-space: nowrap; }
+  .kpi-val-all { font-family: 'Fraunces','Georgia',serif; font-size: 1.15rem; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: -0.02em; line-height: 1; }
+  .kpi-sep { font-size: 0.8rem; color: rgba(255,255,255,0.22); font-weight: 300; }
+  .kpi-val-sel { font-family: 'Fraunces','Georgia',serif; font-size: 1.15rem; font-weight: 600; color: #a8c8ff; letter-spacing: -0.02em; line-height: 1; transition: color 0.2s; }
+  .ribbon-sel-label {
+    position: absolute; right: 32px; top: 50%; transform: translateY(-50%);
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); padding-left: 18px;
+    border-left: 2px solid rgba(255,255,255,0.1); white-space: nowrap;
+  }
+  .ribbon-sel-label strong { display: block; color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: none; margin-top: 1px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+
+  @keyframes pop { 0%{transform:scale(1)} 40%{transform:scale(1.07);color:#ffd080} 100%{transform:scale(1)} }
+  .kpi-val-sel.pop { animation: pop 0.3s ease; }
+
+  /* MAIN */
+  .main { max-width: 1440px; margin: 0 auto; padding: 22px 40px 60px; }
+
+  /* 3-COL GRID: sidebar | charts | table */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 140px 390px 1fr;
+    gap: 18px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+  .charts-col { display: flex; flex-direction: column; gap: 18px; }
+  @media (max-width: 1100px) { .content-grid { grid-template-columns: 140px 1fr; } .detail-col { grid-column: 1/-1; } }
+  @media (max-width: 700px)  { .content-grid { grid-template-columns: 1fr; } }
+
+  /* ── iPHONE / MOBILE ────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .site-header { padding: calc(14px + env(safe-area-inset-top)) 16px 12px; flex-wrap: wrap; }
+    .site-header h1 { font-size: 1.3rem; }
+    .header-right { text-align: left; }
+    .header-meta { font-size: 0.75rem; }
+
+    .ribbon { padding: 10px 14px; flex-wrap: wrap; }
+    .ribbon-sel-label { position: static; transform: none; border-left: none; padding-left: 0; margin-top: 6px; text-align: left; width: 100%; }
+    .ribbon-sel-label strong { max-width: none; }
+    .kpi-group { flex-wrap: wrap; justify-content: center; row-gap: 6px; }
+    .kpi-block { padding: 4px 12px; }
+
+    .main { padding: 14px 12px 40px; }
+    .content-grid { gap: 12px; }
+
+    .filter-sidebar { padding: 10px; }
+    .btn-2col { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+    .filter-sidebar .btn { min-height: 34px; font-size: 0.85rem; }
+
+    .chart-wrap { height: 220px; }
+
+    .card-header { padding: 10px 12px; }
+    .load-btn { padding: 7px 12px; font-size: 0.72rem !important; }
+    .detail-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .table-scroll { -webkit-overflow-scrolling: touch; max-height: 55vh !important; }
+    table { font-size: 0.76rem; }
+    td, thead th { padding: 8px 10px; }
+  }
+
+  /* FILTER SIDEBAR */
+  .filter-sidebar {
+    background: var(--white); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 12px 10px; box-shadow: 0 2px 8px var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .filter-section-title {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #999; margin-bottom: 7px; padding-bottom: 5px; border-bottom: 1px solid var(--rule);
+  }
+  .filter-divider { height: 1px; background: var(--rule); margin: 10px 0; }
+  .btn-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .filter-all-none { display: flex; gap: 4px; margin-top: 7px; }
+
+  /* BUTTONS */
+  .btn {
+    font-family: var(--font); font-size: 0.78rem; font-weight: 500;
+    padding: 4px 6px; border: 1.5px solid var(--rule); background: var(--paper); color: #777;
+    cursor: pointer; border-radius: 3px; transition: all 0.1s ease; user-select: none;
+    text-align: center; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--mid); color: var(--mid); background: #ebf0f9; }
+  .btn.active.btn-year { background: var(--deep); color: var(--white); border-color: var(--deep); box-shadow: 0 1px 4px rgba(26,39,68,0.25); }
+  .btn.active.btn-prod { background: var(--accent2); color: var(--white); border-color: var(--accent2); box-shadow: 0 1px 4px rgba(74,140,92,0.3); }
+  .btn-xs { font-size: 0.8rem; padding: 3px 7px; color: #aaa; border-color: #ddd; }
+  .btn-xs:hover { color: var(--accent); border-color: var(--accent); background: var(--paper); }
+
+  /* product dots */
+  .btn-product::before { content:''; display:inline-block; width:5px; height:5px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+  .btn-product[data-p="APT"]::before { background:#4a8c5c; }
+  .btn-product[data-p="IND"]::before { background:#2d5087; }
+  .btn-product[data-p="LAN"]::before { background:#c8832a; }
+  .btn-product[data-p="OFC"]::before { background:#9b3d3d; }
+  .btn-product[data-p="OTH"]::before { background:#7b4fa6; }
+  .btn-product[data-p="RET"]::before { background:#2d7d8a; }
+
+  /* CARDS */
+  .card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 2px 8px var(--shadow); overflow: hidden; }
+  .table-card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 2px 8px var(--shadow); overflow: hidden; }
+  .card-header { background: var(--deep); padding: 9px 16px; }
+  .card-title { font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .card-title strong { display: block; font-family: 'Fraunces','Georgia',serif; font-size: 0.9rem; font-weight: 600; color: var(--white); letter-spacing: 0; text-transform: none; margin-top: 1px; }
+  .card-body { padding: 14px; }
+  .chart-wrap { position: relative; height: 255px; }
+
+  /* TABLES */
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  thead th { background: var(--deep); color: rgba(255,255,255,0.62); font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; font-size: 0.67rem; padding: 9px 12px; text-align: right; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.07); }
+  thead th:first-child { text-align: left; }
+  tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.1s; }
+  tbody tr:hover { background: #edf2fc; }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 7px 12px; text-align: right; color: #334; border-right: 1px solid var(--rule); white-space: nowrap; }
+  td:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+  td.zero { color: #ccc; }
+
+  .detail-bar { display: flex; align-items: center; justify-content: space-between; padding: 9px 16px 0; }
+  .row-count { font-size: 0.8rem; color: #888; letter-spacing: 0.08em; white-space: nowrap; }
+  .row-count span { font-family: 'Fraunces','Georgia',serif; font-size: 1rem; color: var(--deep); font-weight: 700; margin-right: 3px; }
+  .legend { display: flex; gap: 10px; flex-wrap: wrap; padding: 0 16px 10px; font-size: 0.69rem; color: #666; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .empty-msg { text-align: center; color: #bbb; padding: 28px; font-size: 0.85rem; letter-spacing: 0.1em; }
+  tfoot tr { background: var(--light-bg); }
+  tfoot td { padding: 8px 12px; font-size: 0.8rem; border-right: 1px solid var(--rule); position: sticky; bottom: 0; background: var(--light-bg); z-index: 2; box-shadow: inset 0 2px 0 var(--deep); }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(3px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { animation: fadeIn 0.2s ease; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--light-bg); }
+  ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <h1>Brian Mannlein | Sales Performance</h1>
+    <div class="subtitle">Commercial Real Estate · Transaction Dashboard</div>
+  </div>
+  <div class="header-right">
+    <div class="header-meta">
+      <div id="hdr-records">— transactions</div>
+      <div id="hdr-span">—</div>
+    </div>
+    <div class="data-source-label" id="data-source-label">Loading data…</div>
+  </div>
+</header>
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="kpi-group">
+    <div class="kpi-block">
+      <div class="kpi-label">Transactions</div>
+      <div class="kpi-pair"><span class="kpi-val-all" id="r1-tx">—</span><span class="kpi-sep">/</span><span class="kpi-val-sel" id="r2-tx">—</span></div>
+    </div>
+    <div class="kpi-block">
+      <div class="kpi-label">Sale Price</div>
+      <div class="kpi-pair"><span class="kpi-val-all" id="r1-sp">—</span><span class="kpi-sep">/</span><span class="kpi-val-sel" id="r2-sp">—</span></div>
+    </div>
+    <div class="kpi-block">
+      <div class="kpi-label">Income</div>
+      <div class="kpi-pair"><span class="kpi-val-all" id="r1-ic">—</span><span class="kpi-sep">/</span><span class="kpi-val-sel" id="r2-ic">—</span></div>
+    </div>
+    <div class="kpi-block">
+      <div class="kpi-label">Units</div>
+      <div class="kpi-pair"><span class="kpi-val-all" id="r1-un">—</span><span class="kpi-sep">/</span><span class="kpi-val-sel" id="r2-un">—</span></div>
+    </div>
+  </div>
+  <div class="ribbon-sel-label">All-time / Selected<strong id="r2-sub">—</strong></div>
+</div>
+
+<div class="main">
+  <div class="content-grid">
+
+    <!-- FILTER SIDEBAR -->
+    <div class="filter-sidebar">
+      <div class="filter-section-title">Year</div>
+      <div class="btn-2col" id="year-btns"></div>
+      <div class="filter-all-none">
+        <button class="btn btn-xs" id="yr-all">All</button>
+        <button class="btn btn-xs" id="yr-none">None</button>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <div class="filter-section-title">Product</div>
+      <div class="btn-2col" id="prod-btns"></div>
+      <div class="filter-all-none">
+        <button class="btn btn-xs" id="pr-all">All</button>
+        <button class="btn btn-xs" id="pr-none">None</button>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-col">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Sales by Product<strong>Sale Price Breakdown</strong></div></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="chart-donut"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Trend Over Time<strong>Annual Income by Product</strong></div></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="chart-bar"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- DETAIL TABLE -->
+    <div class="detail-col table-card">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Transaction Detail<strong>Individual Records</strong></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <button class="load-btn" id="refresh-btn" style="font-size:0.68rem;padding:5px 13px;">↺ Refresh Data</button>
+        </div>
+      </div>
+      <div class="detail-bar">
+        <div class="legend" id="legend"></div>
+        <div class="row-count"><span id="detail-count">0</span> records shown</div>
+      </div>
+      <div class="table-scroll" style="max-height:600px;overflow-y:auto"><table id="detail-table"><tbody><tr><td class="empty-msg">Loading transaction data…</td></tr></tbody></table></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── CONSTANTS ─────────────────────────────────────────────────────────────────
+const PRODUCTS    = ['APT','LAN','IND','RET','OFC','OTH'];
+const PROD_COLORS = {APT:'#4a8c5c',IND:'#2d5087',LAN:'#c8832a',OFC:'#9b3d3d',OTH:'#7b4fa6',RET:'#2d7d8a'};
+const PROD_NAMES  = {APT:'Apartment',IND:'Industrial',LAN:'Land',OFC:'Office',OTH:'Other',RET:'Retail'};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let RAW = [];
+let ALL_YEARS = [];
+let selYears = new Set();
+let selProds  = new Set(PRODUCTS);
+let donutChart = null, barChart = null;
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+const sum  = (rows,k) => rows.reduce((a,r)=>a+(r[k]||0),0);
+const fmtN = v => Math.round(v).toLocaleString();
+const fmtK = v => { if(!v) return '—'; const a=Math.abs(v); if(a>=1e6) return '$'+(v/1e6).toFixed(1)+'M'; if(a>=1e3) return '$'+(v/1e3).toFixed(0)+'K'; return '$'+Math.round(v).toLocaleString(); };
+const fmt$ = v => (v===0||v===undefined||v===null) ? '—' : '$'+Math.round(v).toLocaleString();
+const filtered = () => RAW.filter(r => selYears.has(r.YEAR) && selProds.has(r.PRODUCT));
+
+// ── EXCEL LOADING ─────────────────────────────────────────────────────────────
+function excelDateToISO(serial) {
+  // Excel date serial → JS Date
+  const d = new Date(Math.round((serial - 25569) * 86400 * 1000));
+  return d.toISOString().slice(0, 10);
+}
+
+function parseExcel(arrayBuffer) {
+  const wb = XLSX.read(arrayBuffer, { type: 'array', cellDates: false });
+  // Try sheet named "DATA" first, otherwise first sheet
+  const sheetName = wb.SheetNames.includes('DATA') ? 'DATA' : wb.SheetNames[0];
+  const ws = wb.Sheets[sheetName];
+  const rows = XLSX.utils.sheet_to_json(ws, { defval: null });
+
+  // Normalise column names (trim, uppercase)
+  const normalise = obj => {
+    const out = {};
+    for (const k of Object.keys(obj)) {
+      out[k.trim().toUpperCase()] = obj[k];
+    }
+    return out;
+  };
+
+  const parsed = [];
+  for (const raw of rows) {
+    const r = normalise(raw);
+    // Map flexible column names
+    const prop   = r['PROPERTY'] ?? r['PROP'] ?? '';
+    const salePx = parseFloat(r['SALE PRICE'] ?? r['SALEPRICE'] ?? r['PRICE'] ?? 0) || 0;
+    const comm   = parseFloat(r['COMMISSION'] ?? r['COMM'] ?? 0) || 0;
+    const split  = parseFloat(r['SPLIT'] ?? 0) || 0;
+    const income = parseFloat(r['INCOME'] ?? r['NET INCOME'] ?? 0) || 0;
+    const units  = parseFloat(r['UNITS'] ?? r['UNIT'] ?? 0) || 0;
+    const prod   = (r['PRODUCT'] ?? r['TYPE'] ?? '').toString().trim().toUpperCase();
+    let year = r['YEAR'] ?? r['YR'] ?? null;
+    let saleDate = r['SALE DATE'] ?? r['SALEDATE'] ?? r['DATE'] ?? null;
+
+    // Handle date: could be a number (Excel serial) or string
+    if (saleDate !== null) {
+      if (typeof saleDate === 'number') {
+        saleDate = excelDateToISO(saleDate);
+      } else {
+        saleDate = String(saleDate).slice(0, 10);
+      }
+    }
+
+    // Derive year from date if not explicitly present
+    if (!year && saleDate) {
+      year = parseInt(saleDate.slice(0, 4));
+    }
+    year = parseInt(year);
+
+    if (!prop && !salePx && !comm) continue; // skip empty rows
+    if (isNaN(year)) continue;
+
+    parsed.push({
+      PROPERTY: prop,
+      'SALE DATE': saleDate ?? '',
+      'SALE PRICE': salePx,
+      COMMISSION: comm,
+      SPLIT: split,
+      INCOME: income,
+      UNITS: units,
+      YEAR: year,
+      PRODUCT: prod || 'OTH'
+    });
+  }
+  return parsed;
+}
+
+function loadData(data, ts) {
+  RAW = data;
+  ALL_YEARS = [...new Set(RAW.map(r=>r.YEAR))].sort((a,b)=>a-b);
+  const curYear = new Date().getFullYear();
+  selYears = ALL_YEARS.includes(curYear) ? new Set([curYear]) : new Set(ALL_YEARS);
+  selProds = new Set(PRODUCTS);
+
+  // Destroy existing charts so they rebuild
+  if (donutChart) { donutChart.destroy(); donutChart = null; }
+  if (barChart)   { barChart.destroy();   barChart = null; }
+
+  // Update header
+  document.getElementById('hdr-records').textContent = RAW.length + ' transactions';
+  document.getElementById('hdr-span').textContent = ALL_YEARS[0] + ' – ' + ALL_YEARS[ALL_YEARS.length-1];
+  setDataSourceLabel(ts);
+
+  rebuildButtons();
+  buildLegend();
+  refresh();
+}
+
+function setDataSourceLabel(ts) {
+  const el = document.getElementById('data-source-label');
+  if (!ts) { el.textContent = 'Live data · not yet updated'; return; }
+  const timeStr = ts.toLocaleString(undefined, { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' });
+  el.textContent = 'Live data · updated ' + timeStr;
+}
+
+// ── REMOTE DATA SOURCE ─────────────────────────────────────────────────────────
+const DATA_URL   = 'https://bmannlein.github.io/Property-Search-Data/Test-Data.xlsx';
+const STORAGE_KEY = 'commTracker_data_v2';
+const STORAGE_TS  = 'commTracker_ts_v2';
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const ts  = localStorage.getItem(STORAGE_TS);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (Array.isArray(data) && data.length > 0) {
+        loadData(data, ts ? new Date(ts) : null);
+        return true;
+      }
+    }
+  } catch(e) {
+    console.warn('Could not restore cached data:', e.message);
+  }
+  return false;
+}
+
+function setRefreshState(state) {
+  const btn = document.getElementById('refresh-btn');
+  if (state === 'loading') { btn.textContent = '⟳ Loading…'; btn.disabled = true; }
+  else if (state === 'error') { btn.textContent = '⚠ Retry'; btn.disabled = false; }
+  else { btn.textContent = '↺ Refresh Data'; btn.disabled = false; }
+}
+
+async function fetchAndLoad(isManual) {
+  setRefreshState('loading');
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Server returned ' + res.status);
+    const buf  = await res.arrayBuffer();
+    const data = parseExcel(buf);
+    if (!data.length) throw new Error('No rows found in the spreadsheet');
+
+    const ts = new Date();
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      localStorage.setItem(STORAGE_TS, ts.toISOString());
+    } catch(e) { console.warn('Could not cache data locally:', e.message); }
+
+    loadData(data, ts);
+    setRefreshState('idle');
+  } catch (err) {
+    console.error('Fetch failed:', err.message);
+    setRefreshState('error');
+    if (RAW.length === 0) {
+      document.getElementById('data-source-label').textContent = 'Could not load data — check connection';
+    } else if (isManual) {
+      document.getElementById('data-source-label').textContent = 'Refresh failed · showing last saved data';
+    }
+  }
+}
+
+document.getElementById('refresh-btn').addEventListener('click', () => fetchAndLoad(true));
+
+// PULL-TO-REFRESH (simple touch gesture — swipe down from the very top)
+(function() {
+  let startY = null;
+  document.addEventListener('touchstart', e => {
+    if (window.scrollY === 0) startY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (startY !== null) {
+      const dy = e.changedTouches[0].clientY - startY;
+      if (dy > 90 && window.scrollY === 0) fetchAndLoad(true);
+    }
+    startY = null;
+  }, { passive: true });
+})();
+
+// ── KPI ANIMATE ───────────────────────────────────────────────────────────────
+function setKPI(id, val) {
+  const el = document.getElementById(id);
+  if (el && el.textContent !== val) {
+    el.textContent = val;
+    el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+  }
+}
+
+// ── RIBBONS ───────────────────────────────────────────────────────────────────
+function updateRibbons() {
+  const all = RAW;
+  setKPI('r1-tx', fmtN(all.length));
+  setKPI('r1-sp', fmtK(sum(all,'SALE PRICE')));
+  setKPI('r1-ic', fmtK(sum(all,'INCOME')));
+  setKPI('r1-un', fmtN(sum(all,'UNITS')));
+
+  const sel = filtered();
+  setKPI('r2-tx', fmtN(sel.length));
+  setKPI('r2-sp', fmtK(sum(sel,'SALE PRICE')));
+  setKPI('r2-ic', fmtK(sum(sel,'INCOME')));
+  setKPI('r2-un', fmtN(sum(sel,'UNITS')));
+
+  const allY = selYears.size === ALL_YEARS.length;
+  const allP = selProds.size === PRODUCTS.length;
+  const parts = [];
+  if (!allY) { const ys=[...selYears].sort(); parts.push(ys.length<=4 ? ys.join(', ') : ys.length+' years'); }
+  else parts.push('All years');
+  if (!allP) parts.push([...selProds].join(', '));
+  else parts.push('All products');
+  document.getElementById('r2-sub').textContent = parts.join(' · ');
+}
+
+// ── BUTTONS ───────────────────────────────────────────────────────────────────
+function rebuildButtons() {
+  const yc = document.getElementById('year-btns');
+  const pc = document.getElementById('prod-btns');
+  yc.innerHTML = '';
+  pc.innerHTML = '';
+
+  // Years: descending, 2 columns
+  const yearsDesc = [...ALL_YEARS].sort((a,b)=>b-a);
+  yearsDesc.forEach(y => {
+    const b = document.createElement('button');
+    b.className = 'btn btn-year' + (selYears.has(y) ? ' active' : '');
+    b.textContent = String(y);
+    b.dataset.y = y;
+    b.addEventListener('click', () => {
+      selYears.has(y) ? selYears.delete(y) : selYears.add(y);
+      syncButtons(); refresh();
+    });
+    yc.appendChild(b);
+  });
+
+  // Products: fixed order APT, LAN, IND, RET, OFC, OTH — 2 columns
+  PRODUCTS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'btn btn-prod btn-product active';
+    b.textContent = p; b.dataset.p = p; b.title = PROD_NAMES[p];
+    b.addEventListener('click', () => {
+      selProds.has(p) ? selProds.delete(p) : selProds.add(p);
+      syncButtons(); refresh();
+    });
+    pc.appendChild(b);
+  });
+
+  document.getElementById('yr-all').onclick  = () => { selYears=new Set(ALL_YEARS); syncButtons(); refresh(); };
+  document.getElementById('yr-none').onclick  = () => { selYears=new Set(); syncButtons(); refresh(); };
+  document.getElementById('pr-all').onclick   = () => { selProds=new Set(PRODUCTS); syncButtons(); refresh(); };
+  document.getElementById('pr-none').onclick  = () => { selProds=new Set(); syncButtons(); refresh(); };
+}
+
+function syncButtons() {
+  document.querySelectorAll('.btn-year').forEach(b => b.classList.toggle('active', selYears.has(+b.dataset.y)));
+  document.querySelectorAll('.btn-prod').forEach(b => b.classList.toggle('active', selProds.has(b.dataset.p)));
+}
+
+// ── DONUT ─────────────────────────────────────────────────────────────────────
+function updateDonut() {
+  const rows  = filtered();
+  const data  = PRODUCTS.map(p => sum(rows.filter(r=>r.PRODUCT===p),'SALE PRICE'));
+  const total = data.reduce((a,b)=>a+b,0);
+  if (donutChart) { donutChart.data.datasets[0].data=data; donutChart.update('active'); return; }
+  donutChart = new Chart(document.getElementById('chart-donut').getContext('2d'), {
+    type: 'doughnut',
+    data: { labels: PRODUCTS.map(p=>`${p} — ${PROD_NAMES[p]}`), datasets:[{ data, backgroundColor:PRODUCTS.map(p=>PROD_COLORS[p]), borderWidth:2, borderColor:'#fdfcf8', hoverOffset:8 }] },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'62%',
+      plugins: {
+        legend: { position:'bottom', labels:{font:{family:'Calibri',size:12},color:'#445',padding:8,boxWidth:9,boxHeight:9,usePointStyle:true} },
+        tooltip: { callbacks:{ label:ctx=>{ const v=ctx.parsed; const p=total>0?(v/total*100).toFixed(1):0; return ` ${fmtK(v)}  (${p}%)`; } }, bodyFont:{family:'Calibri',size:11}, titleFont:{family:'Georgia',size:13} }
+      }
+    }
+  });
+}
+
+// ── BAR — Annual Income by Product ────────────────────────────────────────────
+// TODAY's date string (YYYY-MM-DD) — set once at load time so the chart is
+// consistent with whichever day the file is opened.
+const TODAY_STR = new Date().toISOString().slice(0, 10);
+
+// A row is "received" when its sale date is on or before today.
+// A row is "potential" when its sale date is strictly after today.
+const isReceived  = r => r['SALE DATE'] && r['SALE DATE'] <= TODAY_STR;
+const isPotential = r => r['SALE DATE'] && r['SALE DATE'] >  TODAY_STR;
+
+// Custom plugin: draw total labels above each stacked bar column.
+// We have two stacks ('actual' and 'potential') drawn at the same x position,
+// so we label the combined top of each stack.
+const stackTotalPlugin = {
+  id: 'stackTotals',
+  afterDatasetsDraw(chart) {
+    const { ctx, scales: { x, y } } = chart;
+    const nLabels = chart.data.labels.length;
+
+    // Separate datasets by stack group
+    const actualDs = chart.data.datasets.filter(ds => ds._stack === 'actual');
+    const potDs    = chart.data.datasets.filter(ds => ds._stack === 'potential');
+
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.font = '600 11px Calibri, sans-serif';
+
+    for (let i = 0; i < nLabels; i++) {
+      const actualTotal = actualDs.reduce((s, ds) => s + (ds.data[i] || 0), 0);
+      const potTotal    = potDs.reduce((s,   ds) => s + (ds.data[i] || 0), 0);
+      const grandTotal  = actualTotal + potTotal;
+      if (!grandTotal) continue;
+
+      const xPos = x.getPixelForValue(i);
+
+      // Received total — dark, sits just above the top of the solid stack
+      if (actualTotal) {
+        ctx.fillStyle = '#445';
+        ctx.fillText(fmtK(actualTotal), xPos, y.getPixelForValue(actualTotal) - 4);
+      }
+
+      // Grand total — muted, sits above the full bar (only shown when potential exists)
+      if (potTotal) {
+        ctx.fillStyle = '#999';
+        ctx.fillText(fmtK(grandTotal), xPos, y.getPixelForValue(grandTotal) - 4);
+      }
+    }
+    ctx.restore();
+  }
+};
+
+function buildBarDatasets(years, prods) {
+  // Actual income (received) — solid, darker fill
+  const actualDs = prods.map(p => ({
+    label: p,
+    _stack: 'actual',
+    stack: 'income',
+    data: years.map(y =>
+      sum(RAW.filter(r => r.YEAR === y && r.PRODUCT === p && isReceived(r)), 'INCOME')
+    ),
+    backgroundColor: PROD_COLORS[p] + 'dd',
+    borderColor:     PROD_COLORS[p],
+    borderWidth: 1,
+    borderRadius: 0,
+  }));
+
+  // Potential income (future-dated) — light, hatched-look via low opacity
+  const potDs = prods.map(p => ({
+    label: p + ' (potential)',
+    _stack: 'potential',
+    stack: 'income',
+    data: years.map(y =>
+      sum(RAW.filter(r => r.YEAR === y && r.PRODUCT === p && isPotential(r)), 'SPLIT')
+    ),
+    backgroundColor: PROD_COLORS[p] + '40',
+    borderColor:     PROD_COLORS[p] + '99',
+    borderWidth: 1,
+    borderDash: [4, 3],
+    borderRadius: 0,
+  }));
+
+  return [...actualDs, ...potDs];
+}
+
+function updateBar() {
+  const years = ALL_YEARS.filter(y => selYears.has(y));
+  const prods = PRODUCTS.filter(p => selProds.has(p));
+  const datasets = buildBarDatasets(years, prods);
+
+  if (barChart) {
+    barChart.data.labels   = years.map(String);
+    barChart.data.datasets = datasets;
+    barChart.update('active');
+    return;
+  }
+
+  barChart = new Chart(document.getElementById('chart-bar').getContext('2d'), {
+    type: 'bar',
+    data: { labels: years.map(String), datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      layout: { padding: { top: 30 } },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { font: { family: 'Calibri', size: 12 }, color: '#667', maxRotation: 45 }
+        },
+        y: {
+          stacked: true,
+          grid: { color: '#e8e4da' },
+          ticks: { font: { family: 'Calibri', size: 12 }, color: '#778', callback: v => fmtK(v) }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: { family: 'Calibri', size: 11 }, color: '#445', padding: 10,
+            boxWidth: 10, boxHeight: 10,
+            // Show one solid swatch per product for actual; one faded for potential
+            generateLabels(chart) {
+              const prods = PRODUCTS.filter(p => selProds.has(p));
+              const hasPot = chart.data.datasets.some(
+                ds => ds._stack === 'potential' && ds.data.some(v => v > 0)
+              );
+              const items = prods.map(p => ({
+                text: p,
+                fillStyle: PROD_COLORS[p] + 'dd',
+                strokeStyle: PROD_COLORS[p],
+                lineWidth: 1,
+                hidden: false,
+                datasetIndex: chart.data.datasets.findIndex(ds => ds.label === p)
+              }));
+              if (hasPot) {
+                items.push({
+                  text: 'Potential (Split)',
+                  fillStyle: 'rgba(120,120,120,0.18)',
+                  strokeStyle: 'rgba(120,120,120,0.55)',
+                  lineWidth: 1,
+                  hidden: false,
+                  datasetIndex: -1
+                });
+              }
+              return items;
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            title: items => items[0].label,
+            beforeBody: items => {
+              const i = items[0].dataIndex;
+              const ds = items[0].chart.data.datasets;
+              const actualTotal = ds.filter(d => d._stack === 'actual')
+                                    .reduce((s, d) => s + (d.data[i] || 0), 0);
+              const potTotal    = ds.filter(d => d._stack === 'potential')
+                                    .reduce((s, d) => s + (d.data[i] || 0), 0);
+              return potTotal > 0
+                ? [`  Received: ${fmtK(actualTotal)}   Potential: ${fmtK(potTotal)}`, '']
+                : [`  Total received: ${fmtK(actualTotal)}`, ''];
+            },
+            label: ctx => {
+              if (!ctx.parsed.y) return null;
+              const isPot = ctx.dataset._stack === 'potential';
+              const prod  = ctx.dataset.label.replace(' (potential)', '');
+              return isPot
+                ? `  ${prod} potential: ${fmtK(ctx.parsed.y)}`
+                : `  ${prod}: ${fmtK(ctx.parsed.y)}`;
+            }
+          },
+          bodyFont: { family: 'Calibri', size: 11 },
+          titleFont: { family: 'Georgia', size: 13 }
+        }
+      }
+    },
+    plugins: [stackTotalPlugin]
+  });
+}
+
+// ── DETAIL ────────────────────────────────────────────────────────────────────
+function updateDetail() {
+  const rows = filtered();
+  document.getElementById('detail-count').textContent = rows.length;
+  const tbl = document.getElementById('detail-table');
+  if (!rows.length) { tbl.innerHTML='<tbody><tr><td colspan="7" class="empty-msg">No records match current selection</td></tr></tbody>'; return; }
+  let html = '<thead><tr><th>PROPERTY</th><th>DATE</th><th>TYPE</th><th>SALE PRICE</th><th>SPLIT</th><th>INCOME</th><th>UNITS</th></tr></thead><tbody>';
+  rows.forEach(r => {
+    const dot = `<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${PROD_COLORS[r.PRODUCT]||'#aaa'};margin-right:5px;vertical-align:middle"></span>`;
+    html += `<tr>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${r.PROPERTY}</td>
+      <td>${r['SALE DATE']||''}</td>
+      <td>${dot}${r.PRODUCT}</td>
+      <td class="${r['SALE PRICE']===0?'zero':''}">${fmt$(r['SALE PRICE'])}</td>
+      <td class="${r.SPLIT===0?'zero':''}">${fmt$(r.SPLIT)}</td>
+      <td class="${r.INCOME===0?'zero':''}">${fmt$(r.INCOME)}</td>
+      <td class="${r.UNITS===0?'zero':''}">${r.UNITS>0?fmtN(r.UNITS):'—'}</td>
+    </tr>`;
+  });
+  const totalSP    = rows.reduce((a,r) => a + (r['SALE PRICE']||0), 0);
+  const totalSplit = rows.reduce((a,r) => a + (r['SPLIT']||0), 0);
+  const totalInc   = rows.reduce((a,r) => a + (r['INCOME']||0), 0);
+  const totalUnits = rows.reduce((a,r) => a + (r['UNITS']||0), 0);
+  const tfoot = `<tfoot><tr>
+    <td colspan="3" style="text-align:right;font-weight:700;color:var(--deep);letter-spacing:0.06em;font-size:0.72rem;text-transform:uppercase;">Totals</td>
+    <td style="font-weight:700;color:var(--deep)">${fmt$(totalSP)}</td>
+    <td style="font-weight:700;color:var(--deep)">${fmt$(totalSplit)}</td>
+    <td style="font-weight:700;color:var(--deep)">${fmt$(totalInc)}</td>
+    <td style="font-weight:700;color:var(--deep)">${totalUnits > 0 ? fmtN(totalUnits) : '—'}</td>
+  </tr></tfoot>`;
+  tbl.innerHTML = html + '</tbody>' + tfoot;
+}
+
+// ── LEGEND ────────────────────────────────────────────────────────────────────
+function buildLegend() {
+  const lg = document.getElementById('legend');
+  lg.innerHTML = '';
+  PRODUCTS.forEach(p => {
+    const d = document.createElement('div'); d.className='legend-item';
+    d.innerHTML = `<span class="legend-dot" style="background:${PROD_COLORS[p]}"></span>${p} — ${PROD_NAMES[p]}`;
+    lg.appendChild(d);
+  });
+}
+
+// ── REFRESH ───────────────────────────────────────────────────────────────────
+function refresh() { updateRibbons(); updateDonut(); updateBar(); updateDetail(); }
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildLegend();
+// Paint instantly from cache if we have it, then always fetch a fresh copy
+// from the live spreadsheet in the background so the numbers stay current.
+const hadCache = loadFromStorage();
+fetchAndLoad(!hadCache);
+</script>
+</body>
+</html>
